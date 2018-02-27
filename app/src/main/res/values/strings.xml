@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">JumpStart</string>
+    <string name="name">JumpStart</string>
+    <string name="yes">Speak Mode</string>
+    <string name="no">Write Mode</string>
+    <string name="jumpstart">
+        More About JumpStart…
+
+        JumpStart is a mobile vehicle expert app that is build for you to be able to do the following tasks:
+
+        1.JumpStart will help you locate the nearest garage easily from your vehicle fault site.
+        2.JumpStart will help you on how to fix your car.
+        3.JumpStart will not only guide you but also educate you some of the simple vehicle fixing solutions,
+        4.JumpStart will also help you easily diagnose complex faults and repair.
+
+        Try it Out
+    </string>
+</resources>
