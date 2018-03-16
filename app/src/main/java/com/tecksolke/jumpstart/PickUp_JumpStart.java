@@ -165,8 +165,10 @@ public class PickUp_JumpStart extends AppCompatActivity {
 
             if (spokendata.get(0).equalsIgnoreCase("Hello") || spokendata.get(0).equalsIgnoreCase("Hey")|| spokendata.get(0).equalsIgnoreCase("hallo")) {
                 toSpeech.speak("Hello " + getUsername() + "how may i help you fix your car", TextToSpeech.QUEUE_FLUSH, null);
-            } else if ((spokendata.get(0).equalsIgnoreCase("Faulty Filter") || spokendata.get(0).equalsIgnoreCase("Filter") || spokendata.get(0).equalsIgnoreCase("Spoiled Filter"))) {
-                pickupFilter();
+            } else if ((spokendata.get(0).equalsIgnoreCase("Excess Smoke") || spokendata.get(0).equalsIgnoreCase("Smoking Engine") || spokendata.get(0).equalsIgnoreCase("Smoke"))) {
+                smokyEngine();
+            } else if ((spokendata.get(0).equalsIgnoreCase("Change Oil") || spokendata.get(0).equalsIgnoreCase("Oil") || spokendata.get(0).equalsIgnoreCase("Oil Change"))) {
+                changeOil();
             } else {
                 faultMissing();
             }
@@ -180,22 +182,70 @@ public class PickUp_JumpStart extends AppCompatActivity {
             faultype.setError("Please Enter Pickup Fault To JumpStart...");
         } else if ((faultype.getText().toString().equalsIgnoreCase("Hey") || faultype.getText().toString().equalsIgnoreCase("Hello") || faultype.getText().toString().equalsIgnoreCase("hallo")|| faultype.getText().toString().equalsIgnoreCase("hallo"))) {
             toSpeech.speak("Hello " + getUsername() + "how may i help you fix your car", TextToSpeech.QUEUE_FLUSH, null);
-        }else if ((faultype.getText().toString().equalsIgnoreCase("Faulty Filter") || faultype.getText().toString().equalsIgnoreCase("Filter") || faultype.getText().toString().equalsIgnoreCase("Spoiled Filter"))) {
-            pickupFilter();
-        } else {
+        }else if ((faultype.getText().toString().equalsIgnoreCase("Excess Smoke") || faultype.getText().toString().equalsIgnoreCase("Smoking Engine") || faultype.getText().toString().equalsIgnoreCase("Smoke"))) {
+            smokyEngine();
+        }else if ((faultype.getText().toString().equalsIgnoreCase("Change Oil") || faultype.getText().toString().equalsIgnoreCase("Oil") || faultype.getText().toString().equalsIgnoreCase("Oil Change"))) {
+            changeOil();
+        }else {
             faultMissing();
         }
     }
 
     //pickup faults processing inference engines
-    private void pickupFilter() {
-        final String state = "How to Fix an Air Filter.";
-        final String filterFixing = "1. Identify the cold air intake system of the truck’s engine. That is where the air filter is installed.\n2. Identify the adjacent parts next to the faulty filter and remove them.\n3. Start removing the clamps, hooks, fasteners, clips, hoses and any other holding part on the engine.\n4. Remove Air Intake System.\n5. Clean the Parts.\n6. Replace the Air Filter.\n7. Close and Check.";
+    //smoky engine
+    private void smokyEngine(){
+        final String state = "How to Fix Excess Smoke.";
+        final String filterFixing = "1. White smoke can mean the engine timing is off or the engine compression is weak.\n2. Blue smoke can mean worn cylinders, piston rings and valves.\n3. Black smoke can mean dirty air filters, bad injectors, a turbo problem or a problem in a cylinder head (insufficient fuel to the cylinder).\n4. Check and fix.";
         //speak
         toSpeech.speak(state, TextToSpeech.QUEUE_FLUSH, null);
 
         //get image to show in toast
-        imageView.setImageResource(R.mipmap.filter);
+        imageView.setImageResource(R.mipmap.smoky);
+
+        //show image in toast
+        Toast toast = Toast.makeText(this, state, Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.setView(imageView);
+        toast.show();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //speak to user
+                toSpeech.speak(filterFixing, TextToSpeech.QUEUE_FLUSH, null);
+                //show dialog
+                niftyDialogBuilder
+                        .withTitle(state)
+                        .withTitleColor("#9dffffff")
+                        .withMessage(filterFixing)
+                        .withMessageColor("#9dffffff")
+                        .withDialogColor("#2A3342")
+                        .withButton1Text("NEXT")
+                        .withDuration(700)
+                        .isCancelable(false)
+                        .withEffect(Effectstype.Fall)
+                        .setButton1Click(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                toSpeech.stop();
+                                niftyDialogBuilder.cancel();
+                                jumpHelpfull();
+                            }
+                        })
+                        .show();
+            }
+        }, 3500);
+    }
+
+    //changing engine oil
+    private void changeOil(){
+        final String state = "How to Change Oil In Your PickUp.";
+        final String filterFixing = "1. Before you change your oil you should run your truck and get the oil warm so that it will gather all the dirty particles.\n2. Drain the oil from the oil pan, and clean the bolt with a rag and screw it back in with your fingers.\n3. Use the oil filter wrench to unscrew the oil filter which is to the right of the oil pan.\n4. Dispose of old filter and the new filter can be screwed in place\n5. Take fresh oil and rub it around the rim of the filter. Hand tighten the filter.\n6. Pour the recommended amount of oil into the vehicle.\n7. Run vehicle for ten minutes, then check oil levels with dipstick.";
+        //speak
+        toSpeech.speak(state, TextToSpeech.QUEUE_FLUSH, null);
+
+        //get image to show in toast
+        imageView.setImageResource(R.mipmap.oil);
 
         //show image in toast
         Toast toast = Toast.makeText(this, state, Toast.LENGTH_LONG);
@@ -307,6 +357,7 @@ public class PickUp_JumpStart extends AppCompatActivity {
                 })
                 .show();
     }
+
     //function for reading data
     public void readData() {
         Cursor res = temporaryDB.getAllData();

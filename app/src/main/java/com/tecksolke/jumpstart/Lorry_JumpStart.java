@@ -187,7 +187,7 @@ public class Lorry_JumpStart extends AppCompatActivity {
            engineStart();
         } else if ((faultype.getText().toString().equalsIgnoreCase("Engine Overheating") || faultype.getText().toString().equalsIgnoreCase("Engine Overheating") || faultype.getText().toString().equalsIgnoreCase("overheating"))) {
            overHeatingEngine();
-        } else {
+        }   else {
             faultMissing();
         }
     }
@@ -240,12 +240,12 @@ public class Lorry_JumpStart extends AppCompatActivity {
     //Overheating Engine
     private void overHeatingEngine(){
         final String state = "How to Fix OverHeating Engine.";
-        final String filterFixing = "1. Check the fuel supply. Replace fuel filters.\n2. Check batteries and connections to starter.\n3. Check starter motor.\n4. Check fuel pump and fuel lines.\n5. Check fuel for contamination.Because dirty fuel will cause problems.\n6. Check and clean the air filters. Replace if necessary.\n7. Check the fuel Injectors.\n8. Close and Check. Then try to start the engine ones more.";
+        final String filterFixing = "1. Check the air flow to the rad and ensure it isn’t blocked.\n2. Check to be sure all axles are rolling freely. Also be sure their are no brakes or tires dragging.\n3. Check the engine fan and belts.\n4. Check outside air temperature. If the air temperature is very hot and you’re driving, gear down.\n5. Turn off the air conditioning on steep grades in hot weather. This will help keep the engine cool.\n6. Check the oil and coolant levels when the engine is cool. Check for leaks.";
         //speak
         toSpeech.speak(state, TextToSpeech.QUEUE_FLUSH, null);
 
         //get image to show in toast
-        imageView.setImageResource(R.mipmap.start);
+        imageView.setImageResource(R.mipmap.overheating);
 
         //show image in toast
         Toast toast = Toast.makeText(this, state, Toast.LENGTH_LONG);
