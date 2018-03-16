@@ -7,4 +7,5 @@
     <color name="colordark">#69000000</color>
     <color name="colortexthint">#FDBA4B</color>
     <color name="colorText">#000000</color>
+    <color name="colorTextWhite">#ffffff</color>
 </resources>

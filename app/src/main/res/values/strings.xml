@@ -15,4 +15,10 @@
 
         Try it Out
     </string>
+    <string name="title_activity_lorry_jump_start">Lorry JumpStart</string>
+    <string name="title_activity_garage__maps">Garage Map Routes</string>
+    <string name="title_activity_pick_up__jump_start">PickUp JumpStart</string>
+    <string name="title_activity_car__jump_start">Car JumpStart</string>
+    <string name="title_activity_car__garage__maps">Garage Map Routes</string>
+    <string name="title_activity_pickup__garage__maps">Garage Map Routes</string>
 </resources>

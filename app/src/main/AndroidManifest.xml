@@ -3,11 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.tecksolke.jumpstart">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <permission
+        android:name="com.tecksolke.jumpstart.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.tecksolke.jumpstart.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permissions.READ_GSERVICES" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_logo"
+        android:icon="@mipmap/logologo"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/ic_logo"
+        android:roundIcon="@mipmap/logologo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
@@ -29,7 +46,49 @@
         <activity
             android:name=".Category"
             android:screenOrientation="portrait" />
-        <activity android:name=".LorryJumpStart" android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".PasswordUpdated"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Lorry_JumpStart"
+            android:label="@string/title_activity_lorry_jump_start"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Lorry_Garage_Maps"
+            android:label="@string/title_activity_garage__maps"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".PickUp_JumpStart"
+            android:label="@string/title_activity_pick_up__jump_start"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Car_JumpStart"
+            android:label="@string/title_activity_car__jump_start"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".Car_Garage_Maps"
+            android:label="@string/title_activity_car__garage__maps"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".Pickup_Garage_Maps"
+            android:label="@string/title_activity_pickup__garage__maps"
+            android:theme="@style/AppTheme"></activity>
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyCnf9e2LJyasixPeLDUtnSvMNEc60QBuT0" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
     </application>
 
 </manifest>

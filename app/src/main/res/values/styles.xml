@@ -6,6 +6,17 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:itemBackground">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colormine</item>
     </style>
 
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="MyAlertDialogStyle"  parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:textColor">@color/colormine</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colormine</item>
+    </style>
 </resources>
