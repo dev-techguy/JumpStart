@@ -41,12 +41,12 @@ public class PickUp_JumpStart extends AppCompatActivity {
     String username = null;
     ArrayList<String> spokendata;
     ImageView imageView;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pick_up__jump_start);
-        
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -154,7 +154,28 @@ public class PickUp_JumpStart extends AppCompatActivity {
         try {
             startActivityForResult(intent, 100);
         } catch (ActivityNotFoundException e) {
-            Toast.makeText(getApplicationContext(), "Sorry Failed To Pick PickUp Fault", Toast.LENGTH_SHORT).show();
+            String noFault = "Sorry Failed To Pick PickUp Fault.";
+            toSpeech.speak(noFault, TextToSpeech.QUEUE_FLUSH, null);
+            niftyDialogBuilder
+                    .withIcon(getResources().getDrawable(R.mipmap.logologo))
+                    .withTitle("Car Fault")
+                    .withTitleColor("#9dffffff")
+                    .withMessage(noFault)
+                    .withMessageColor("#9dffffff")
+                    .withDialogColor("#2A3342")
+                    .withButton1Text("NEXT")
+                    .withDuration(700)
+                    .isCancelable(false)
+                    .withEffect(Effectstype.Newspager)
+                    .setButton1Click(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            toSpeech.stop();
+                            niftyDialogBuilder.cancel();
+                            jumpHelpfull();
+                        }
+                    })
+                    .show();
         }
     }
 
@@ -163,7 +184,7 @@ public class PickUp_JumpStart extends AppCompatActivity {
         if ((requestCode == 100) && (data != null) && (resultCode == RESULT_OK)) {
             spokendata = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
 
-            if (spokendata.get(0).equalsIgnoreCase("Hello") || spokendata.get(0).equalsIgnoreCase("Hey")|| spokendata.get(0).equalsIgnoreCase("hallo")) {
+            if (spokendata.get(0).equalsIgnoreCase("Hello") || spokendata.get(0).equalsIgnoreCase("Hey") || spokendata.get(0).equalsIgnoreCase("hallo")) {
                 toSpeech.speak("Hello " + getUsername() + "how may i help you fix your car", TextToSpeech.QUEUE_FLUSH, null);
             } else if ((spokendata.get(0).equalsIgnoreCase("Excess Smoke") || spokendata.get(0).equalsIgnoreCase("Smoking Engine") || spokendata.get(0).equalsIgnoreCase("Smoke"))) {
                 smokyEngine();
@@ -180,20 +201,20 @@ public class PickUp_JumpStart extends AppCompatActivity {
         if (faultype.getText().toString().equalsIgnoreCase("")) {
             toSpeech.speak("Please Enter Pickup,  Fault To JumpStart", TextToSpeech.QUEUE_FLUSH, null);
             faultype.setError("Please Enter Pickup Fault To JumpStart...");
-        } else if ((faultype.getText().toString().equalsIgnoreCase("Hey") || faultype.getText().toString().equalsIgnoreCase("Hello") || faultype.getText().toString().equalsIgnoreCase("hallo")|| faultype.getText().toString().equalsIgnoreCase("hallo"))) {
+        } else if ((faultype.getText().toString().equalsIgnoreCase("Hey") || faultype.getText().toString().equalsIgnoreCase("Hello") || faultype.getText().toString().equalsIgnoreCase("hallo") || faultype.getText().toString().equalsIgnoreCase("hallo"))) {
             toSpeech.speak("Hello " + getUsername() + "how may i help you fix your car", TextToSpeech.QUEUE_FLUSH, null);
-        }else if ((faultype.getText().toString().equalsIgnoreCase("Excess Smoke") || faultype.getText().toString().equalsIgnoreCase("Smoking Engine") || faultype.getText().toString().equalsIgnoreCase("Smoke"))) {
+        } else if ((faultype.getText().toString().equalsIgnoreCase("Excess Smoke") || faultype.getText().toString().equalsIgnoreCase("Smoking Engine") || faultype.getText().toString().equalsIgnoreCase("Smoke"))) {
             smokyEngine();
-        }else if ((faultype.getText().toString().equalsIgnoreCase("Change Oil") || faultype.getText().toString().equalsIgnoreCase("Oil") || faultype.getText().toString().equalsIgnoreCase("Oil Change"))) {
+        } else if ((faultype.getText().toString().equalsIgnoreCase("Change Oil") || faultype.getText().toString().equalsIgnoreCase("Oil") || faultype.getText().toString().equalsIgnoreCase("Oil Change"))) {
             changeOil();
-        }else {
+        } else {
             faultMissing();
         }
     }
 
     //pickup faults processing inference engines
     //smoky engine
-    private void smokyEngine(){
+    private void smokyEngine() {
         final String state = "How to Fix Excess Smoke.";
         final String filterFixing = "1. White smoke can mean the engine timing is off or the engine compression is weak.\n2. Blue smoke can mean worn cylinders, piston rings and valves.\n3. Black smoke can mean dirty air filters, bad injectors, a turbo problem or a problem in a cylinder head (insufficient fuel to the cylinder).\n4. Check and fix.";
         //speak
@@ -238,7 +259,7 @@ public class PickUp_JumpStart extends AppCompatActivity {
     }
 
     //changing engine oil
-    private void changeOil(){
+    private void changeOil() {
         final String state = "How to Change Oil In Your PickUp.";
         final String filterFixing = "1. Before you change your oil you should run your truck and get the oil warm so that it will gather all the dirty particles.\n2. Drain the oil from the oil pan, and clean the bolt with a rag and screw it back in with your fingers.\n3. Use the oil filter wrench to unscrew the oil filter which is to the right of the oil pan.\n4. Dispose of old filter and the new filter can be screwed in place\n5. Take fresh oil and rub it around the rim of the filter. Hand tighten the filter.\n6. Pour the recommended amount of oil into the vehicle.\n7. Run vehicle for ten minutes, then check oil levels with dipstick.";
         //speak
@@ -283,9 +304,8 @@ public class PickUp_JumpStart extends AppCompatActivity {
     }
 
 
-
     //car fault missing
-    private void faultMissing(){
+    private void faultMissing() {
         String noFault = "Sorry. Your pickup fault is not yet implemented in JumpStart.";
         toSpeech.speak(noFault, TextToSpeech.QUEUE_FLUSH, null);
         niftyDialogBuilder
@@ -347,7 +367,7 @@ public class PickUp_JumpStart extends AppCompatActivity {
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 } finally {
-                                    startActivity(new Intent(PickUp_JumpStart.this,Pickup_Garage_Maps.class));
+                                    startActivity(new Intent(PickUp_JumpStart.this, Pickup_Garage_Maps.class));
                                     finish();
                                 }
                             }
@@ -384,7 +404,7 @@ public class PickUp_JumpStart extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         toSpeech.stop();
-        startActivity(new Intent(PickUp_JumpStart.this,Category.class));
+        startActivity(new Intent(PickUp_JumpStart.this, Category.class));
         finish();
         return true;
     }
@@ -418,7 +438,7 @@ public class PickUp_JumpStart extends AppCompatActivity {
     }
 
     //delete data from SQlite
-    public void deleteData(){
+    public void deleteData() {
         Cursor res = temporaryDB.getAllData();
         if (res != null && res.getCount() > 0) {
             while (res.moveToNext()) {

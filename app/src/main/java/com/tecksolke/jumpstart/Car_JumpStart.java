@@ -159,7 +159,28 @@ public class Car_JumpStart extends AppCompatActivity {
         try {
             startActivityForResult(intent, 100);
         } catch (ActivityNotFoundException e) {
-            Toast.makeText(getApplicationContext(), "Sorry Failed To Pick car Fault", Toast.LENGTH_SHORT).show();
+            String noFault = "Sorry Failed To Pick Car Fault.";
+            toSpeech.speak(noFault, TextToSpeech.QUEUE_FLUSH, null);
+            niftyDialogBuilder
+                    .withIcon(getResources().getDrawable(R.mipmap.logologo))
+                    .withTitle("Car Fault")
+                    .withTitleColor("#9dffffff")
+                    .withMessage(noFault)
+                    .withMessageColor("#9dffffff")
+                    .withDialogColor("#2A3342")
+                    .withButton1Text("NEXT")
+                    .withDuration(700)
+                    .isCancelable(false)
+                    .withEffect(Effectstype.Newspager)
+                    .setButton1Click(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            toSpeech.stop();
+                            niftyDialogBuilder.cancel();
+                            jumpHelpfull();
+                        }
+                    })
+                    .show();
         }
     }
 
