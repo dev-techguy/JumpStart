@@ -178,7 +178,7 @@ public class Pickup_Garage_Maps extends AppCompatActivity implements OnMapReadyC
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(ll, zoom);
         mGoogleMap.addMarker(new MarkerOptions().position(ll).title("This is Nairobi"));
         mGoogleMap.setMyLocationEnabled(true);
-        mGoogleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         mGoogleMap.moveCamera(cameraUpdate);
     }
 
