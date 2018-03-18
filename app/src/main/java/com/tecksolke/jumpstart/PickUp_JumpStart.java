@@ -241,7 +241,7 @@ public class PickUp_JumpStart extends AppCompatActivity {
                         .withMessage(filterFixing)
                         .withMessageColor("#9dffffff")
                         .withDialogColor("#2A3342")
-                        .withButton1Text("NEXT")
+                        .withButton1Text("OK")
                         .withDuration(700)
                         .isCancelable(false)
                         .withEffect(Effectstype.Fall)
@@ -261,7 +261,9 @@ public class PickUp_JumpStart extends AppCompatActivity {
     //changing engine oil
     private void changeOil() {
         final String state = "How to Change Oil In Your PickUp.";
-        final String filterFixing = "1. Before you change your oil you should run your pickup and get the oil warm so that it will gather all the dirty particles.\n2. Drain the oil from the oil pan, and clean the bolt with a rag and screw it back in with your fingers.\n3. Use the oil filter wrench to unscrew the oil filter which is to the right of the oil pan.\n4. Dispose of old filter and the new filter can be screwed in place\n5. Take fresh oil and rub it around the rim of the filter. Hand tighten the filter.\n6. Pour the recommended amount of oil into the vehicle.\n7. Run vehicle for ten minutes, then check oil levels with dipstick.";
+        final String filterFixing = "1. Before you change your oil you should run your pickup and get the oil warm so that it will gather all the dirty particles.\n2. Drain the oil from the oil pan, and clean the bolt with a rag and screw it back in with your fingers.\n3. Use the oil filter wrench to unscrew the oil filter which is to the right of the oil pan.";
+
+        final String filterFixing2 = "4. Dispose of old filter and the new filter can be screwed in place\n5. Take fresh oil and rub it around the rim of the filter. Hand tighten the filter.\n6. Pour the recommended amount of oil into the vehicle.\n7. Run vehicle for ten minutes, then check oil levels with dipstick.";
         //speak
         toSpeech.speak(state, TextToSpeech.QUEUE_FLUSH, null);
 
@@ -286,16 +288,36 @@ public class PickUp_JumpStart extends AppCompatActivity {
                         .withMessage(filterFixing)
                         .withMessageColor("#9dffffff")
                         .withDialogColor("#2A3342")
-                        .withButton1Text("NEXT")
+                        .withButton1Text("NEXT STEPS")
                         .withDuration(700)
                         .isCancelable(false)
                         .withEffect(Effectstype.Fall)
                         .setButton1Click(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                toSpeech.stop();
                                 niftyDialogBuilder.cancel();
-                                jumpHelpfull();
+                                //continue
+                                toSpeech.speak(filterFixing2, TextToSpeech.QUEUE_FLUSH, null);
+
+                                niftyDialogBuilder
+                                        .withTitle(state)
+                                        .withTitleColor("#9dffffff")
+                                        .withMessage(filterFixing2)
+                                        .withMessageColor("#9dffffff")
+                                        .withDialogColor("#2A3342")
+                                        .withButton1Text("OK")
+                                        .withDuration(700)
+                                        .isCancelable(false)
+                                        .withEffect(Effectstype.Fall)
+                                        .setButton1Click(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                toSpeech.stop();
+                                                niftyDialogBuilder.cancel();
+                                                jumpHelpfull();
+                                            }
+                                        })
+                                        .show();
                             }
                         })
                         .show();
@@ -315,7 +337,7 @@ public class PickUp_JumpStart extends AppCompatActivity {
                 .withMessage(noFault)
                 .withMessageColor("#9dffffff")
                 .withDialogColor("#2A3342")
-                .withButton1Text("NEXT")
+                .withButton1Text("OK")
                 .withDuration(700)
                 .isCancelable(false)
                 .withEffect(Effectstype.Fliph)

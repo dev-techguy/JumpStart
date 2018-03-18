@@ -164,7 +164,7 @@ public class Lorry_JumpStart extends AppCompatActivity {
                     .withMessage(noFault)
                     .withMessageColor("#9dffffff")
                     .withDialogColor("#2A3342")
-                    .withButton1Text("NEXT")
+                    .withButton1Text("OK")
                     .withDuration(700)
                     .isCancelable(false)
                     .withEffect(Effectstype.Newspager)
@@ -241,7 +241,7 @@ public class Lorry_JumpStart extends AppCompatActivity {
                         .withMessage(filterFixing)
                         .withMessageColor("#9dffffff")
                         .withDialogColor("#2A3342")
-                        .withButton1Text("NEXT")
+                        .withButton1Text("OK")
                         .withDuration(700)
                         .isCancelable(false)
                         .withEffect(Effectstype.Fall)
@@ -261,7 +261,8 @@ public class Lorry_JumpStart extends AppCompatActivity {
     //Overheating Engine
     private void overHeatingEngine(){
         final String state = "How to Fix OverHeating Engine.";
-        final String filterFixing = "1. Check the air flow to the rad and ensure it isn’t blocked.\n2. Check to be sure all axles are rolling freely. Also be sure their are no brakes or tires dragging.\n3. Check the engine fan and belts.\n4. Check outside air temperature. If the air temperature is very hot and you’re driving, gear down.\n5. Turn off the air conditioning on steep grades in hot weather. This will help keep the engine cool.\n6. Check the oil and coolant levels when the engine is cool. Check for leaks.";
+        final String filterFixing = "1. Check the air flow to the rad and ensure it isn’t blocked.\n2. Check to be sure all axles are rolling freely. Also be sure their are no brakes or tires dragging.\n3. Check the engine fan and belts.";
+        final String filterFixing2 = "4. Check outside air temperature. If the air temperature is very hot and you’re driving, gear down.\n5. Turn off the air conditioning on steep grades in hot weather. This will help keep the engine cool.\n6. Check the oil and coolant levels when the engine is cool. Check for leaks.";
         //speak
         toSpeech.speak(state, TextToSpeech.QUEUE_FLUSH, null);
 
@@ -286,16 +287,35 @@ public class Lorry_JumpStart extends AppCompatActivity {
                         .withMessage(filterFixing)
                         .withMessageColor("#9dffffff")
                         .withDialogColor("#2A3342")
-                        .withButton1Text("NEXT")
+                        .withButton1Text("NEXT STEPS")
                         .withDuration(700)
                         .isCancelable(false)
                         .withEffect(Effectstype.Fall)
                         .setButton1Click(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                toSpeech.stop();
                                 niftyDialogBuilder.cancel();
-                                jumpHelpfull();
+                                //SPEAK TO USER
+                                toSpeech.speak(filterFixing2, TextToSpeech.QUEUE_FLUSH, null);
+                                niftyDialogBuilder
+                                        .withTitle(state)
+                                        .withTitleColor("#9dffffff")
+                                        .withMessage(filterFixing2)
+                                        .withMessageColor("#9dffffff")
+                                        .withDialogColor("#2A3342")
+                                        .withButton1Text("OK")
+                                        .withDuration(700)
+                                        .isCancelable(false)
+                                        .withEffect(Effectstype.Fall)
+                                        .setButton1Click(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                toSpeech.stop();
+                                                niftyDialogBuilder.cancel();
+                                                jumpHelpfull();
+                                            }
+                                        })
+                                        .show();
                             }
                         })
                         .show();
@@ -315,7 +335,7 @@ public class Lorry_JumpStart extends AppCompatActivity {
                 .withMessage(noFault)
                 .withMessageColor("#9dffffff")
                 .withDialogColor("#2A3342")
-                .withButton1Text("NEXT")
+                .withButton1Text("OK")
                 .withDuration(700)
                 .isCancelable(false)
                 .withEffect(Effectstype.Fliph)
