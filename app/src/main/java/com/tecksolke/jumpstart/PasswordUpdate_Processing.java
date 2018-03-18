@@ -121,6 +121,7 @@ public class PasswordUpdate_Processing extends AsyncTask<String,Void,String>{
 
     @Override
     protected void onPostExecute(String s) {
+        super.onPostExecute(s);
         //set the progress dialog to false
         //Register.spinner.setVisibility(View.GONE);
         PasswordUpdated.progressDialog.hide();
@@ -150,11 +151,11 @@ public class PasswordUpdate_Processing extends AsyncTask<String,Void,String>{
                         }
                     })
                     .show();
-        }else{
+        }else if(s.equalsIgnoreCase("401")){
             niftyDialogBuilder
                     .withTitle("Password Resenting Status")
                     .withTitleColor("#9dffffff")
-                    .withMessage(s)
+                    .withMessage("Wrong details please try again")
                     .withMessageColor("#9dffffff")
                     .withDialogColor("#2A3342")
                     .withButton1Text("OK")
@@ -168,8 +169,25 @@ public class PasswordUpdate_Processing extends AsyncTask<String,Void,String>{
                         }
                     })
                     .show();
+        }else{
+            niftyDialogBuilder
+                    .withTitle("Network Status")
+                    .withTitleColor("#9dffffff")
+                    .withMessage("Low Network Bandwidth.\nPlease Check Your Internet Data.")
+                    .withMessageColor("#9dffffff")
+                    .withDialogColor("#2A3342")
+                    .withButton1Text("OK")
+                    .withDuration(700)
+                    .isCancelable(false)
+                    .withEffect(Effectstype.Shake)
+                    .setButton1Click(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            niftyDialogBuilder.cancel();
+                        }
+                    })
+                    .show();
         }
-        super.onPostExecute(s);
     }
 
     @Override

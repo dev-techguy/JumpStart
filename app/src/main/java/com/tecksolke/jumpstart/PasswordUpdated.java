@@ -5,8 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -34,7 +34,7 @@ public class PasswordUpdated extends AppCompatActivity {
         niftyDialogBuilder = NiftyDialogBuilder.getInstance(this);
 
         //set a circular progress bar
-        progressDialog = new ProgressDialog(PasswordUpdated.this,R.style.MyAlertDialogStyle);
+        progressDialog = new ProgressDialog(PasswordUpdated.this, R.style.MyAlertDialogStyle);
 //        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setMessage("JumpStart Processing...");
         progressDialog.setIndeterminate(false);
@@ -90,28 +90,33 @@ public class PasswordUpdated extends AppCompatActivity {
         }
         if (confirmReset.getText().toString().equalsIgnoreCase("")) {
             confirmReset.setError("Please Enter Confirm Password");
-        }else{
-            if(!confirmReset.getText().toString().equalsIgnoreCase(passReset.getText().toString())){
-                niftyDialogBuilder
-                        .withIcon(getResources().getDrawable(R.mipmap.logologo))
-                        .withTitle("Password Validation")
-                        .withTitleColor("#9dffffff")
-                        .withMessage("Passwords Don't Match")
-                        .withMessageColor("#9dffffff")
-                        .withDialogColor("#2A3342")
-                        .withButton1Text("OK")
-                        .withDuration(700)
-                        .isCancelable(false)
-                        .withEffect(Effectstype.RotateBottom)
-                        .setButton1Click(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                niftyDialogBuilder.cancel();
-                            }
-                        })
-                        .show();
-            }else{
-                checkConnection(this);
+        } else {
+            if (confirmReset.getText().toString().length() < 8 || passReset.getText().toString().length() < 8) {
+                passReset.setError("You must have 8 characters in your password");
+                confirmReset.setError("You must have 8 characters in your password");
+            } else {
+                if (!confirmReset.getText().toString().equalsIgnoreCase(passReset.getText().toString())) {
+                    niftyDialogBuilder
+                            .withIcon(getResources().getDrawable(R.mipmap.logologo))
+                            .withTitle("Password Validation")
+                            .withTitleColor("#9dffffff")
+                            .withMessage("Passwords Don't Match")
+                            .withMessageColor("#9dffffff")
+                            .withDialogColor("#2A3342")
+                            .withButton1Text("OK")
+                            .withDuration(700)
+                            .isCancelable(false)
+                            .withEffect(Effectstype.RotateBottom)
+                            .setButton1Click(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    niftyDialogBuilder.cancel();
+                                }
+                            })
+                            .show();
+                } else {
+                    checkConnection(this);
+                }
             }
         }
     }

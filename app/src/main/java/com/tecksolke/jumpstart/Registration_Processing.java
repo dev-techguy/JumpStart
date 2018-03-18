@@ -70,7 +70,7 @@ public class Registration_Processing extends AsyncTask<String, Void, String> {
         //post the notification to the bar
         notificationManager.notify(0, mBuilder.build());
     }
-    
+
     @Override
     protected String doInBackground(String... strings) {
         try {
@@ -136,7 +136,7 @@ public class Registration_Processing extends AsyncTask<String, Void, String> {
         Register.progressDialog.hide();
         //call the notification dialog
         final NiftyDialogBuilder niftyDialogBuilder = NiftyDialogBuilder.getInstance(context);
-        if(s.equalsIgnoreCase("200")){
+        if (s.equalsIgnoreCase("200")) {
             String username = Register.userName.getText().toString();
             addUserToSqlite(username);
 
@@ -163,17 +163,53 @@ public class Registration_Processing extends AsyncTask<String, Void, String> {
                         }
                     })
                     .show();
-        }else{
+        } else if (s.equalsIgnoreCase("email")) {
             niftyDialogBuilder
                     .withTitle("Registration Status")
                     .withTitleColor("#9dffffff")
-                    .withMessage(s)
+                    .withMessage("Sorry " + Register.Email.getText() + " is already used.")
                     .withMessageColor("#9dffffff")
                     .withDialogColor("#2A3342")
                     .withButton1Text("OK")
                     .withDuration(700)
                     .isCancelable(false)
                     .withEffect(Effectstype.Slidetop)
+                    .setButton1Click(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            niftyDialogBuilder.cancel();
+                        }
+                    })
+                    .show();
+        } else if (s.equalsIgnoreCase("username")) {
+            niftyDialogBuilder
+                    .withTitle("Registration Status")
+                    .withTitleColor("#9dffffff")
+                    .withMessage("Sorry " + Register.userName.getText() + " is already used.")
+                    .withMessageColor("#9dffffff")
+                    .withDialogColor("#2A3342")
+                    .withButton1Text("OK")
+                    .withDuration(700)
+                    .isCancelable(false)
+                    .withEffect(Effectstype.Slidetop)
+                    .setButton1Click(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            niftyDialogBuilder.cancel();
+                        }
+                    })
+                    .show();
+        } else {
+            niftyDialogBuilder
+                    .withTitle("Network Status")
+                    .withTitleColor("#9dffffff")
+                    .withMessage("Low Network Bandwidth.\nPlease Check Your Internet Data.")
+                    .withMessageColor("#9dffffff")
+                    .withDialogColor("#2A3342")
+                    .withButton1Text("OK")
+                    .withDuration(700)
+                    .isCancelable(false)
+                    .withEffect(Effectstype.Shake)
                     .setButton1Click(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -190,7 +226,7 @@ public class Registration_Processing extends AsyncTask<String, Void, String> {
     }
 
     //add to database of SQLITE
-    private void addUserToSqlite(String username){
+    private void addUserToSqlite(String username) {
         temporaryDB = new TemporaryDB(context);
         Boolean dbResults = temporaryDB.insertData(username);
         if (dbResults) {

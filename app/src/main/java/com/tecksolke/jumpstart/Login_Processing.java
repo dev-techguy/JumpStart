@@ -140,17 +140,35 @@ public class Login_Processing extends AsyncTask<String,Void,String>{
             Intent intent = new Intent(context, Category.class);
             context.startActivity(intent);
             ((Login) context).finish();
-        }else{
+        }else if(s.equalsIgnoreCase("401")){
             niftyDialogBuilder
                     .withTitle("Login Status")
                     .withTitleColor("#9dffffff")
-                    .withMessage(s)
+                    .withMessage("Wrong details please try again")
                     .withMessageColor("#9dffffff")
                     .withDialogColor("#2A3342")
                     .withButton1Text("OK")
                     .withDuration(700)
                     .isCancelable(false)
                     .withEffect(Effectstype.Slidetop)
+                    .setButton1Click(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            niftyDialogBuilder.cancel();
+                        }
+                    })
+                    .show();
+        }else{
+            niftyDialogBuilder
+                    .withTitle("Network Status")
+                    .withTitleColor("#9dffffff")
+                    .withMessage("Low Network Bandwidth.\nPlease Check Your Internet Data.")
+                    .withMessageColor("#9dffffff")
+                    .withDialogColor("#2A3342")
+                    .withButton1Text("OK")
+                    .withDuration(700)
+                    .isCancelable(false)
+                    .withEffect(Effectstype.Shake)
                     .setButton1Click(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {

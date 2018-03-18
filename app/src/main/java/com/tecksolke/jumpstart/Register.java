@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Patterns;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -36,7 +37,7 @@ public class Register extends AppCompatActivity {
         niftyDialogBuilder = NiftyDialogBuilder.getInstance(this);
 
         //set a circular progress bar
-        progressDialog = new ProgressDialog(Register.this,R.style.MyAlertDialogStyle);
+        progressDialog = new ProgressDialog(Register.this, R.style.MyAlertDialogStyle);
 //        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setMessage("JumpStart Processing...");
         progressDialog.setIndeterminate(false);
@@ -94,6 +95,8 @@ public class Register extends AppCompatActivity {
 
     //function for executing data
     public void processNewUser(View view) {
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
         if (firstName.getText().toString().equalsIgnoreCase("")) {
             firstName.setError("Enter your First Name");
         } else if (sirName.getText().toString().equalsIgnoreCase("")) {
@@ -128,27 +131,34 @@ public class Register extends AppCompatActivity {
                 }
             }
             if (verified == 0) {
-                if (!conpassword.getText().toString().equalsIgnoreCase(userPassowrd.getText().toString())) {
-                    niftyDialogBuilder
-                            .withIcon(getResources().getDrawable(R.mipmap.logologo))
-                            .withTitle("Password Validation")
-                            .withTitleColor("#9dffffff")
-                            .withMessage("Passwords Don't Match")
-                            .withMessageColor("#9dffffff")
-                            .withDialogColor("#2A3342")
-                            .withButton1Text("OK")
-                            .withDuration(700)
-                            .isCancelable(false)
-                            .withEffect(Effectstype.RotateBottom)
-                            .setButton1Click(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    niftyDialogBuilder.cancel();
-                                }
-                            })
-                            .show();
-                } else {
-                    checkConnection(this);
+                if (conpassword.getText().toString().length() < 8 || userPassowrd.getText().toString().length() < 8) {
+                    userPassowrd.setError("You must have 8 characters in your password");
+//                    conpassword.setError("You must have 8 characters in your password");
+                }else if (!Patterns.EMAIL_ADDRESS.matcher(Email.getText().toString().trim()).matches()) {
+                    Email.setError("Please Enter A valid Email");
+                }  else {
+                    if (!conpassword.getText().toString().equalsIgnoreCase(userPassowrd.getText().toString())) {
+                        niftyDialogBuilder
+                                .withIcon(getResources().getDrawable(R.mipmap.logologo))
+                                .withTitle("Password Validation")
+                                .withTitleColor("#9dffffff")
+                                .withMessage("Passwords Don't Match")
+                                .withMessageColor("#9dffffff")
+                                .withDialogColor("#2A3342")
+                                .withButton1Text("OK")
+                                .withDuration(700)
+                                .isCancelable(false)
+                                .withEffect(Effectstype.RotateBottom)
+                                .setButton1Click(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        niftyDialogBuilder.cancel();
+                                    }
+                                })
+                                .show();
+                    } else {
+                        checkConnection(this);
+                    }
                 }
             }
         }
@@ -175,7 +185,7 @@ public class Register extends AppCompatActivity {
 
                 //call the function for processing
                 Registration_Processing registration_processing = new Registration_Processing(this);
-                registration_processing.execute(firstname,sirname,email,username,userpassowrd);
+                registration_processing.execute(firstname, sirname, email, username, userpassowrd);
             }
         } else {
             niftyDialogBuilder
