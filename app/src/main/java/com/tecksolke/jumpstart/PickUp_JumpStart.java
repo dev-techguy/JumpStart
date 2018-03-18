@@ -261,7 +261,7 @@ public class PickUp_JumpStart extends AppCompatActivity {
     //changing engine oil
     private void changeOil() {
         final String state = "How to Change Oil In Your PickUp.";
-        final String filterFixing = "1. Before you change your oil you should run your truck and get the oil warm so that it will gather all the dirty particles.\n2. Drain the oil from the oil pan, and clean the bolt with a rag and screw it back in with your fingers.\n3. Use the oil filter wrench to unscrew the oil filter which is to the right of the oil pan.\n4. Dispose of old filter and the new filter can be screwed in place\n5. Take fresh oil and rub it around the rim of the filter. Hand tighten the filter.\n6. Pour the recommended amount of oil into the vehicle.\n7. Run vehicle for ten minutes, then check oil levels with dipstick.";
+        final String filterFixing = "1. Before you change your oil you should run your pickup and get the oil warm so that it will gather all the dirty particles.\n2. Drain the oil from the oil pan, and clean the bolt with a rag and screw it back in with your fingers.\n3. Use the oil filter wrench to unscrew the oil filter which is to the right of the oil pan.\n4. Dispose of old filter and the new filter can be screwed in place\n5. Take fresh oil and rub it around the rim of the filter. Hand tighten the filter.\n6. Pour the recommended amount of oil into the vehicle.\n7. Run vehicle for ten minutes, then check oil levels with dipstick.";
         //speak
         toSpeech.speak(state, TextToSpeech.QUEUE_FLUSH, null);
 
