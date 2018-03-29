@@ -5,7 +5,7 @@ package com.tecksolke.jumpstart;
  */
 
 public class env {
-    public static String urlLogin = "http://tecksolke.com/JumpStart/login.php";
-    public static String urlregistartion = "http://tecksolke.com/JumpStart/register.php";
-    public static String urlupdate = "http://tecksolke.com/JumpStart/update.php";
+    public static String urlLogin = "https://tecksolke.com/JumpStart/login.php";
+    public static String urlregistartion = "https://tecksolke.com/JumpStart/register.php";
+    public static String urlupdate = "https://tecksolke.com/JumpStart/update.php";
 }

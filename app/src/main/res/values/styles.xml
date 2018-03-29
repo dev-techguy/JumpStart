@@ -19,4 +19,10 @@
         <item name="android:background">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colormine</item>
     </style>
+
+    <style name="Spinner" parent="Widget.AppCompat.Light.DropDownItem.Spinner">
+        <item name="android:textColor">@color/colormine</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:textSize">15sp</item>
+    </style>
 </resources>

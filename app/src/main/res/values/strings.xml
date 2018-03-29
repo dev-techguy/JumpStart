@@ -4,7 +4,7 @@
     <string name="yes">Speak Mode</string>
     <string name="no">Write Mode</string>
     <string name="jumpstart">
-        More About JumpStart…
+        <b>More About JumpStart…</b>
 
         JumpStart is a mobile vehicle expert app that is build for you to be able to do the following tasks:
 
@@ -21,4 +21,14 @@
     <string name="title_activity_car__jump_start">Car JumpStart</string>
     <string name="title_activity_car__garage__maps">Garage Map Routes</string>
     <string name="title_activity_pickup__garage__maps">Garage Map Routes</string>
+
+    <string-array name="car_faults">
+        <item>Sample Car Faults</item>
+        <item>Faulty Filter</item>
+        <item>Faulty GasLifts</item>
+        <item>Faulty Antenna</item>
+        <item>Faulty Cabin</item>
+        <item>Faulty Bulbs</item>
+        <item>Faulty sun roof</item>
+    </string-array>
 </resources>

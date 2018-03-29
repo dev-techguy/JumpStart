@@ -2,18 +2,22 @@ package com.tecksolke.jumpstart;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -41,6 +45,10 @@ public class Car_JumpStart extends AppCompatActivity {
     String username = null;
     ArrayList<String> spokendata;
     ImageView imageView;
+    AppCompatSpinner spinnerFaults;
+    Resources resources;
+    String[] carFaults;
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +60,10 @@ public class Car_JumpStart extends AppCompatActivity {
 
         temporaryDB = new TemporaryDB(this);
         niftyDialogBuilder = NiftyDialogBuilder.getInstance(this);
+
+        //set String of car array here
+        resources = getResources();
+        carFaults = resources.getStringArray(R.array.car_faults);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -97,6 +109,19 @@ public class Car_JumpStart extends AppCompatActivity {
         jumpswitch = findViewById(R.id.Car_Switch_Modes);
         faultype = findViewById(R.id.carfaults);
         bcar = findViewById(R.id.bcarjumpstart);
+        spinnerFaults = findViewById(R.id.SpinnerCarFaults);
+        spinnerFaults.setBackgroundColor(Color.parseColor("#2A3342"));
+
+
+        /**
+         * Code for drop down options
+         * */
+        adapter = new ArrayAdapter<>(spinnerFaults.getContext(), android.R.layout.simple_spinner_item, carFaults);
+        adapter.setDropDownViewResource(android.support.v7.appcompat.R.layout.support_simple_spinner_dropdown_item);
+        spinnerFaults.setAdapter(adapter);
+//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, carFaults);
+////set the spinners adapter to the previously created one.
+//        spinnerFaults.setAdapter(adapter);
 
         imageView = new ImageView(this);
         imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
@@ -189,20 +214,20 @@ public class Car_JumpStart extends AppCompatActivity {
         if ((requestCode == 100) && (data != null) && (resultCode == RESULT_OK)) {
             spokendata = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
 
-            if (spokendata.get(0).equalsIgnoreCase("Hello") || spokendata.get(0).equalsIgnoreCase("Hey")|| spokendata.get(0).equalsIgnoreCase("hallo")) {
+            if (spokendata.get(0).equalsIgnoreCase("Hello") || spokendata.get(0).equalsIgnoreCase("Hey") || spokendata.get(0).equalsIgnoreCase("hallo")) {
                 toSpeech.speak("Hello " + getUsername() + "how may i help you fix your car", TextToSpeech.QUEUE_FLUSH, null);
             } else if ((spokendata.get(0).equalsIgnoreCase("Faulty Filter") || spokendata.get(0).equalsIgnoreCase("Filter") || spokendata.get(0).equalsIgnoreCase("Spoiled Filter"))) {
                 carFilter();
             } else if ((spokendata.get(0).equalsIgnoreCase("Faulty GasLifts") || spokendata.get(0).equalsIgnoreCase("Gas Lift") || spokendata.get(0).equalsIgnoreCase("Spoiled Gas Lift"))) {
                 gasLifts();
             } else if ((spokendata.get(0).equalsIgnoreCase("Faulty Antenna") || spokendata.get(0).equalsIgnoreCase("Broken Antenna") || spokendata.get(0).equalsIgnoreCase("Spoiled Antenna"))) {
-               antennaFault();
-            }else if ((spokendata.get(0).equalsIgnoreCase("Faulty Cabin air Filter") || spokendata.get(0).equalsIgnoreCase("Cabin") || spokendata.get(0).equalsIgnoreCase("Spoiled Cabin air"))) {
-               cabinFault();
+                antennaFault();
+            } else if ((spokendata.get(0).equalsIgnoreCase("Faulty Cabin air Filter") || spokendata.get(0).equalsIgnoreCase("Cabin") || spokendata.get(0).equalsIgnoreCase("Spoiled Cabin air"))) {
+                cabinFault();
             } else if ((spokendata.get(0).equalsIgnoreCase("Faulty Bulbs") || spokendata.get(0).equalsIgnoreCase("Bulbs") || spokendata.get(0).equalsIgnoreCase("Non headlight bulbs"))) {
-              nonHeadLights();
-            }else if ((spokendata.get(0).equalsIgnoreCase("Faulty sun roof") || spokendata.get(0).equalsIgnoreCase("sun roof") || spokendata.get(0).equalsIgnoreCase("sunroof"))) {
-              sunRoof();
+                nonHeadLights();
+            } else if ((spokendata.get(0).equalsIgnoreCase("Faulty sun roof") || spokendata.get(0).equalsIgnoreCase("sun roof") || spokendata.get(0).equalsIgnoreCase("sunroof"))) {
+                sunRoof();
             } else {
                 faultMissing();
             }
@@ -214,28 +239,50 @@ public class Car_JumpStart extends AppCompatActivity {
         if (faultype.getText().toString().equalsIgnoreCase("")) {
             toSpeech.speak("Please Enter Car,  Fault To JumpStart", TextToSpeech.QUEUE_FLUSH, null);
             faultype.setError("Please Enter Car Fault To JumpStart...");
-        }else if ((faultype.getText().toString().equalsIgnoreCase("Hey") || faultype.getText().toString().equalsIgnoreCase("Hello") || faultype.getText().toString().equalsIgnoreCase("hallo")|| faultype.getText().toString().equalsIgnoreCase("hallo"))) {
+        } else if ((faultype.getText().toString().equalsIgnoreCase("Hey") || faultype.getText().toString().equalsIgnoreCase("Hello") || faultype.getText().toString().equalsIgnoreCase("hallo") || faultype.getText().toString().equalsIgnoreCase("hallo"))) {
             toSpeech.speak("Hello " + getUsername() + "how may i help you fix your car", TextToSpeech.QUEUE_FLUSH, null);
         } else if ((faultype.getText().toString().equalsIgnoreCase("Faulty Filter") || faultype.getText().toString().equalsIgnoreCase("Filter") || faultype.getText().toString().equalsIgnoreCase("Spoiled Filter"))) {
             carFilter();
         } else if ((faultype.getText().toString().equalsIgnoreCase("Faulty GasLifts") || faultype.getText().toString().equalsIgnoreCase("Gas Lift") || faultype.getText().toString().equalsIgnoreCase("Spoiled Gas Lift"))) {
             gasLifts();
-        }else if ((faultype.getText().toString().equalsIgnoreCase("Faulty Antenna") || faultype.getText().toString().equalsIgnoreCase("Broken Antenna") || faultype.getText().toString().equalsIgnoreCase("Spoiled Antenna"))) {
+        } else if ((faultype.getText().toString().equalsIgnoreCase("Faulty Antenna") || faultype.getText().toString().equalsIgnoreCase("Broken Antenna") || faultype.getText().toString().equalsIgnoreCase("Spoiled Antenna"))) {
             antennaFault();
-        }else if ((faultype.getText().toString().equalsIgnoreCase("Faulty Cabin air Filter") || faultype.getText().toString().equalsIgnoreCase("Cabin") || faultype.getText().toString().equalsIgnoreCase("Spoiled Cabin air Filter"))) {
+        } else if ((faultype.getText().toString().equalsIgnoreCase("Faulty Cabin air Filter") || faultype.getText().toString().equalsIgnoreCase("Cabin") || faultype.getText().toString().equalsIgnoreCase("Spoiled Cabin air Filter"))) {
             cabinFault();
-        }else if ((faultype.getText().toString().equalsIgnoreCase("Faulty Bulbs") || faultype.getText().toString().equalsIgnoreCase("Bulbs") || faultype.getText().toString().equalsIgnoreCase("Non headlight bulbs"))) {
+        } else if ((faultype.getText().toString().equalsIgnoreCase("Faulty Bulbs") || faultype.getText().toString().equalsIgnoreCase("Bulbs") || faultype.getText().toString().equalsIgnoreCase("Non headlight bulbs"))) {
             nonHeadLights();
-        }else if ((faultype.getText().toString().equalsIgnoreCase("Faulty sun roof") || faultype.getText().toString().equalsIgnoreCase("sun roof") || faultype.getText().toString().equalsIgnoreCase("sunroof"))) {
+        } else if ((faultype.getText().toString().equalsIgnoreCase("Faulty sun roof") || faultype.getText().toString().equalsIgnoreCase("sun roof") || faultype.getText().toString().equalsIgnoreCase("sunroof"))) {
             sunRoof();
         } else {
-          faultMissing();
+            faultMissing();
+        }
+    }
+
+    /**
+     * Adapter faults call function
+     */
+    private void adapterProcessing() {
+        if (spinnerFaults.getSelectedItem().toString().equalsIgnoreCase("Sample Car Faults")) {
+            toSpeech.speak("Please Select the a car fault.", TextToSpeech.QUEUE_FLUSH, null);
+        } else if (spinnerFaults.getSelectedItem().toString().equalsIgnoreCase("Faulty Filter")) {
+            cabinFault();
+        } else if (spinnerFaults.getSelectedItem().toString().equalsIgnoreCase("Faulty GasLifts")) {
+            gasLifts();
+        } else if (spinnerFaults.getSelectedItem().toString().equalsIgnoreCase("Faulty Antenna")) {
+            antennaFault();
+        } else if (spinnerFaults.getSelectedItem().toString().equalsIgnoreCase("Faulty Cabin")) {
+            cabinFault();
+        } else if (spinnerFaults.getSelectedItem().toString().equalsIgnoreCase("Faulty Bulbs")) {
+            nonHeadLights();
+        } else if (spinnerFaults.getSelectedItem().toString().equalsIgnoreCase("Faulty sun roof")) {
+            sunRoof();
         }
     }
 
     /**
      * car faults processing inference engines
      */
+
     //carFilter
     private void carFilter() {
         final String state = "How to Fix an Air Filter.";
@@ -327,7 +374,7 @@ public class Car_JumpStart extends AppCompatActivity {
     }
 
     //antenna fixing
-    private void antennaFault(){
+    private void antennaFault() {
         final String state = "How to Fix a Broken Antenna.";
         final String brokenAtenna = "1.  Disconnect the antenna cable from your radio and connect heavy string to the end.\n2. Then unscrew the antenna mount from the pillar and pull the old antenna and the string straight out.\n3. Attach the new antenna cable to the string, pull the cable back into the vehicle and connect it to your radio.\n4. Then secure the new antenna to the pillar using the screws provided.\n5. Close and Check.";
         //speak
@@ -372,7 +419,7 @@ public class Car_JumpStart extends AppCompatActivity {
     }
 
     //cabin fault
-    private void cabinFault(){
+    private void cabinFault() {
         final String state = "How to Fix a Cabin Air Filter.";
         final String brokenAtenna = "1. Cabin air filters are usually located in the air ducts behind the glove box in late model vehicles.\n2. Must remove the access covers and slide out the old filter but note the direction of the airflow arrows so you can install the new filter in the proper orientation .\n3. Then reinstall the covers.\n4. Close and Check.";
         //speak
@@ -417,7 +464,7 @@ public class Car_JumpStart extends AppCompatActivity {
     }
 
     //headlights
-    private void nonHeadLights(){
+    private void nonHeadLights() {
         final String state = "How to Replace Non-Headlight Bulbs.";
         final String brokenAtenna = "1. Remove the retaining screws and pry off the lens.\n2.  Pull the bulb straight out of the socket.\n3. Handle the new bulb with gloved hands or hold it with a paper towel to prevent skin oils from depositing on the thin glass ? that can cause premature bulb failure.\n4. Then push the bulb into the socket until it clicks\n5. Reinstall the lens\n6. Close and Check.";
         //speak
@@ -462,7 +509,7 @@ public class Car_JumpStart extends AppCompatActivity {
     }
 
     //sunroof fault
-    private void sunRoof(){
+    private void sunRoof() {
         final String state = "How to Fix a Leaky Sunroof.";
         final String brokenAtenna = "1. Open the sunroof and look for drain holes in the front and rear corners of your sunroof.\n2.  Once you locate the drains, duct tape a small rubber or plastic tube to the end of your shop vacuum and suck out any debris stuck in the drains.\n3. Then dribble water into each drain and check under the car to see if it's draining onto your driveway or garage floor.\n4. Then Flush the drain after snaking it with the speedometer cable. If it now runs free.\n5. Close and Check.";
         //speak
@@ -508,7 +555,7 @@ public class Car_JumpStart extends AppCompatActivity {
 
 
     //car fault missing
-    private void faultMissing(){
+    private void faultMissing() {
         String noFault = "Sorry your car fault is not yet implemented in JumpStart.";
         toSpeech.speak(noFault, TextToSpeech.QUEUE_FLUSH, null);
         niftyDialogBuilder
