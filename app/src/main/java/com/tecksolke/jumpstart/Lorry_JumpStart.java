@@ -1,29 +1,25 @@
 package com.tecksolke.jumpstart;
 
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.os.Handler;
-import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
-import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.gitonway.lee.niftymodaldialogeffects.lib.Effectstype;
 import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class Lorry_JumpStart extends AppCompatActivity {
@@ -33,22 +29,34 @@ public class Lorry_JumpStart extends AppCompatActivity {
     NiftyDialogBuilder niftyDialogBuilder;
     TextToSpeech toSpeech;
     int result;
-
-    EditText faultype;
-    //Switch jumpswitch;
-    ToggleButton jumpswitch;
-    FloatingActionButton btnmic;
-    Button blorry;
     String username = null;
-    ArrayList<String> spokendata;
-    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lorry_jump_start);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        /**
+         * Changing layouts in spinner manner
+         * */
+        ViewPager viewPager = findViewById(R.id.lorry_pager);
+        ViewPagerAdapter adapterLayout = new ViewPagerAdapter(getSupportFragmentManager());
+
+        // Add Fragments to adapter one by one
+        adapterLayout.addFragment(new Lorry_Spinner_Faults()
+                , "Samples");
+        adapterLayout.addFragment(new Lorry_User_Faults(), "Faults");
+        viewPager.setAdapter(adapterLayout);
+
+        TabLayout tabLayout = findViewById(R.id.lorry_tabs);
+        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_lorry);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_tool);
+        /*
+        * end of that spinner code
+        * */
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         temporaryDB = new TemporaryDB(this);
@@ -93,311 +101,7 @@ public class Lorry_JumpStart extends AppCompatActivity {
             }
         });
 
-        //get components
-        btnmic = findViewById(R.id.Lorry_Microphone);
-        jumpswitch = findViewById(R.id.Lorry_Switch_Modes);
-        faultype = findViewById(R.id.lorryfaults);
-        blorry = findViewById(R.id.blorryjumpstart);
-
-
-        imageView = new ImageView(this);
-        imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-        imageView.setMinimumHeight(300);
-        imageView.setMinimumWidth(300);
-
-        jumpswitch.setTextOff("Write Mode");
-        jumpswitch.setTextOn("Speak Mode");
-
-        //set button mic to hide mode
-        btnmic.setVisibility(View.GONE);
-
-
-        btnmic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                microphone();
-            }
-        });
-
-        blorry.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                processLorryFaults();
-            }
-        });
-
     }
-
-    //get the mode of input
-    public void onSwitchClick(View view) {
-        if (jumpswitch.isChecked()) {
-            toSpeech.speak("Speak Mode Activated . Click the mic button.", TextToSpeech.QUEUE_FLUSH, null);
-            faultype.setText("");
-            btnmic.setVisibility(View.VISIBLE);
-            blorry.setVisibility(View.GONE);
-            faultype.setVisibility(View.GONE);
-        } else {
-            toSpeech.speak("Write Mode Activated", TextToSpeech.QUEUE_FLUSH, null);
-            btnmic.setVisibility(View.GONE);
-            blorry.setVisibility(View.VISIBLE);
-            faultype.setVisibility(View.VISIBLE);
-        }
-    }
-
-    //microphone activation on screen of user
-    public void microphone() {
-        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak the problem Of Your Lorry");
-        intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.ENGLISH);
-        try {
-            startActivityForResult(intent, 100);
-        } catch (ActivityNotFoundException e) {
-            String noFault = "Sorry Failed To Pick lorry Fault.";
-            toSpeech.speak(noFault, TextToSpeech.QUEUE_FLUSH, null);
-            niftyDialogBuilder
-                    .withIcon(getResources().getDrawable(R.mipmap.logologo))
-                    .withTitle("Car Fault")
-                    .withTitleColor("#9dffffff")
-                    .withMessage(noFault)
-                    .withMessageColor("#9dffffff")
-                    .withDialogColor("#2A3342")
-                    .withButton1Text("OK")
-                    .withDuration(700)
-                    .isCancelable(false)
-                    .withEffect(Effectstype.Newspager)
-                    .setButton1Click(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            toSpeech.stop();
-                            niftyDialogBuilder.cancel();
-                            jumpHelpfull();
-                        }
-                    })
-                    .show();
-        }
-    }
-
-    //for microphone processing
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if ((requestCode == 100) && (data != null) && (resultCode == RESULT_OK)) {
-            spokendata = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-
-            if (spokendata.get(0).equalsIgnoreCase("Hello") || spokendata.get(0).equalsIgnoreCase("Hey")|| spokendata.get(0).equalsIgnoreCase("hallo")) {
-                toSpeech.speak("Hello " + getUsername() + "how may i help you fix your car", TextToSpeech.QUEUE_FLUSH, null);
-            } else if ((spokendata.get(0).equalsIgnoreCase("Engine Failed") || spokendata.get(0).equalsIgnoreCase("Engine wont start") || spokendata.get(0).equalsIgnoreCase("Engine won't start")|| spokendata.get(0).equalsIgnoreCase("Start Failed"))) {
-                engineStart();
-            }else if ((spokendata.get(0).equalsIgnoreCase("Engine Overheating") || spokendata.get(0).equalsIgnoreCase("Overheating engine") || spokendata.get(0).equalsIgnoreCase("overheating"))) {
-                overHeatingEngine();
-            } else {
-                faultMissing();
-            }
-        }
-    }
-
-    //method for processing lorry fault
-    public void processLorryFaults() {
-        if (faultype.getText().toString().equalsIgnoreCase("")) {
-            toSpeech.speak("Please Enter Lorry,  Fault To JumpStart", TextToSpeech.QUEUE_FLUSH, null);
-            faultype.setError("Please Enter Lorry Fault To JumpStart...");
-        } else if ((faultype.getText().toString().equalsIgnoreCase("Hey") || faultype.getText().toString().equalsIgnoreCase("Hello") || faultype.getText().toString().equalsIgnoreCase("hallo")|| faultype.getText().toString().equalsIgnoreCase("hallo"))) {
-            toSpeech.speak("Hello " + getUsername() + "how may i help you fix your car", TextToSpeech.QUEUE_FLUSH, null);
-        } else if ((faultype.getText().toString().equalsIgnoreCase("Engine Failed") || faultype.getText().toString().equalsIgnoreCase("Engine wont start") || faultype.getText().toString().equalsIgnoreCase("Engine won't start")|| faultype.getText().toString().equalsIgnoreCase("Start Failed"))) {
-           engineStart();
-        } else if ((faultype.getText().toString().equalsIgnoreCase("Engine Overheating") || faultype.getText().toString().equalsIgnoreCase("Engine Overheating") || faultype.getText().toString().equalsIgnoreCase("overheating"))) {
-           overHeatingEngine();
-        }   else {
-            faultMissing();
-        }
-    }
-
-    //lorry faults processing inference engines
-    private void engineStart() {
-        final String state = "Engine won’t start.";
-        final String filterFixing = "1. Check the fuel supply. Replace fuel filters.\n2. Check batteries and connections to starter.\n3. Check starter motor.\n4. Check fuel pump and fuel lines.\n5. Check fuel for contamination.Because dirty fuel will cause problems.\n6. Check and clean the air filters. Replace if necessary.\n7. Check the fuel Injectors.\n8. Close and Check. Then try to start the engine ones more.";
-        //speak
-        toSpeech.speak(state, TextToSpeech.QUEUE_FLUSH, null);
-
-        //get image to show in toast
-        imageView.setImageResource(R.mipmap.start);
-
-        //show image in toast
-        Toast toast = Toast.makeText(this, state, Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setView(imageView);
-        toast.show();
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                //speak to user
-                toSpeech.speak(filterFixing, TextToSpeech.QUEUE_FLUSH, null);
-                //show dialog
-                niftyDialogBuilder
-                        .withTitle(state)
-                        .withTitleColor("#9dffffff")
-                        .withMessage(filterFixing)
-                        .withMessageColor("#9dffffff")
-                        .withDialogColor("#2A3342")
-                        .withButton1Text("OK")
-                        .withDuration(700)
-                        .isCancelable(false)
-                        .withEffect(Effectstype.Fall)
-                        .setButton1Click(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                toSpeech.stop();
-                                niftyDialogBuilder.cancel();
-                                jumpHelpfull();
-                            }
-                        })
-                        .show();
-            }
-        }, 3500);
-    }
-
-    //Overheating Engine
-    private void overHeatingEngine(){
-        final String state = "How to Fix OverHeating Engine.";
-        final String filterFixing = "1. Check the air flow to the rad and ensure it isn’t blocked.\n2. Check to be sure all axles are rolling freely. Also be sure their are no brakes or tires dragging.\n3. Check the engine fan and belts.";
-        final String filterFixing2 = "4. Check outside air temperature. If the air temperature is very hot and you’re driving, gear down.\n5. Turn off the air conditioning on steep grades in hot weather. This will help keep the engine cool.\n6. Check the oil and coolant levels when the engine is cool. Check for leaks.";
-        //speak
-        toSpeech.speak(state, TextToSpeech.QUEUE_FLUSH, null);
-
-        //get image to show in toast
-        imageView.setImageResource(R.mipmap.overheating);
-
-        //show image in toast
-        Toast toast = Toast.makeText(this, state, Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setView(imageView);
-        toast.show();
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                //speak to user
-                toSpeech.speak(filterFixing, TextToSpeech.QUEUE_FLUSH, null);
-                //show dialog
-                niftyDialogBuilder
-                        .withTitle(state)
-                        .withTitleColor("#9dffffff")
-                        .withMessage(filterFixing)
-                        .withMessageColor("#9dffffff")
-                        .withDialogColor("#2A3342")
-                        .withButton1Text("NEXT STEPS")
-                        .withDuration(700)
-                        .isCancelable(false)
-                        .withEffect(Effectstype.Fall)
-                        .setButton1Click(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                niftyDialogBuilder.cancel();
-                                //SPEAK TO USER
-                                toSpeech.speak(filterFixing2, TextToSpeech.QUEUE_FLUSH, null);
-                                niftyDialogBuilder
-                                        .withTitle(state)
-                                        .withTitleColor("#9dffffff")
-                                        .withMessage(filterFixing2)
-                                        .withMessageColor("#9dffffff")
-                                        .withDialogColor("#2A3342")
-                                        .withButton1Text("OK")
-                                        .withDuration(700)
-                                        .isCancelable(false)
-                                        .withEffect(Effectstype.Fall)
-                                        .setButton1Click(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                toSpeech.stop();
-                                                niftyDialogBuilder.cancel();
-                                                jumpHelpfull();
-                                            }
-                                        })
-                                        .show();
-                            }
-                        })
-                        .show();
-            }
-        }, 3500);
-    }
-
-
-    //car fault missing
-    private void faultMissing(){
-        String noFault = "Sorry your Lorry fault is not yet implemented in JumpStart.";
-        toSpeech.speak(noFault, TextToSpeech.QUEUE_FLUSH, null);
-        niftyDialogBuilder
-                .withIcon(getResources().getDrawable(R.mipmap.logologo))
-                .withTitle("Lorry Fault")
-                .withTitleColor("#9dffffff")
-                .withMessage(noFault)
-                .withMessageColor("#9dffffff")
-                .withDialogColor("#2A3342")
-                .withButton1Text("OK")
-                .withDuration(700)
-                .isCancelable(false)
-                .withEffect(Effectstype.Fliph)
-                .setButton1Click(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        toSpeech.stop();
-                        niftyDialogBuilder.cancel();
-                        jumpHelpfull();
-                    }
-                })
-                .show();
-    }
-
-    //jumpStart HElpFul
-    private void jumpHelpfull() {
-        //talk
-        toSpeech.speak("Was JumpStart Helpful", TextToSpeech.QUEUE_FLUSH, null);
-        niftyDialogBuilder
-                .withTitle("JumpStart")
-                .withTitleColor("#9dffffff")
-                .withMessage("Was JumpStart Helpful")
-                .withMessageColor("#9dffffff")
-                .withDialogColor("#2A3342")
-                .withButton1Text("YES")
-                .withButton2Text("FIND GARAGE")
-                .withDuration(700)
-                .isCancelable(false)
-                .withEffect(Effectstype.Fall)
-                .setButton1Click(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        toSpeech.speak("Thank you For Using JumpStart.", TextToSpeech.QUEUE_FLUSH, null);
-                        faultype.setText("");
-                        niftyDialogBuilder.cancel();
-                    }
-                })
-                .setButton2Click(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        toSpeech.speak("JumpStart will locate for you the nearest garage for assistance. Launching Maps", TextToSpeech.QUEUE_FLUSH, null);
-                        niftyDialogBuilder.cancel();
-                        //start a thread to give a counter
-                        Thread timer = new Thread() {
-                            public void run() {
-                                try {
-                                    //give your delay timer here
-                                    sleep(5000);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                } finally {
-                                    startActivity(new Intent(Lorry_JumpStart.this,Lorry_Garage_Maps.class));
-                                    finish();
-                                }
-                            }
-                        };
-                        timer.start();
-                    }
-                })
-                .show();
-    }
-
     //function for reading data
     public void readData() {
         Cursor res = temporaryDB.getAllData();
@@ -475,5 +179,33 @@ public class Lorry_JumpStart extends AppCompatActivity {
         }
         super.onDestroy();
     }
+    // Adapter for the viewpager using FragmentPagerAdapter
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
 
+        ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
+    }
 }

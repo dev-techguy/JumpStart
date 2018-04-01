@@ -31,6 +31,6 @@ dependencies {
     compile 'cn.pedant.sweetalert:library:1.3'
     implementation 'com.android.support:design:26.1.0'
     compile 'com.nineoldandroids:library:2.4.0'
-    compile 'com.github.sd6352051.niftydialogeffects:niftydialogeffects:1.0.0@aar'
+    compile 'com.github.sd6352051:NiftyDialogEffects:v1.0.3'
     compile 'com.google.android.gms:play-services:12.0.0'
 }

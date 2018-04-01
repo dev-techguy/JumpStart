@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@mipmap/jumpstartone"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#87000000">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="100dp"
+                android:textColorHint="@color/colormine">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/pickupfaults"
+                    android:layout_width="320dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Write Pickup Fault"
+                    android:textAlignment="center"
+                    android:textColor="@color/colormine" />
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/bpickupjumpstart"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorPrimaryDark"
+                android:text="jumpstart"
+                android:textColor="@color/colormine"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/Pickup_Microphone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="200dp"
+        android:background="@color/colormine"
+        android:clickable="true"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/ic_mic" />
+
+    <ToggleButton
+        android:id="@+id/Pickup_Switch_Modes"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colormine"
+        android:textStyle="bold"
+        android:textColor="@color/colorText"
+        android:layout_marginTop="350dp"
+        android:textOff="@string/no"
+        android:textOn="@string/yes"/>
+
+</RelativeLayout>

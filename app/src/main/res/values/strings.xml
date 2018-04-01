@@ -6,14 +6,14 @@
     <string name="jumpstart">
         <b>More About JumpStart…</b>
 
-        JumpStart is a mobile vehicle expert app that is build for you to be able to do the following tasks:
+        "\nJumpStart is a mobile vehicle expert app that is build for you to be able to do the following tasks:
 
-        1.JumpStart will help you locate the nearest garage easily from your vehicle fault site.
-        2.JumpStart will help you on how to fix your car.
-        3.JumpStart will not only guide you but also educate you some of the simple vehicle fixing solutions,
-        4.JumpStart will also help you easily diagnose complex faults and repair.
+        \n1.JumpStart will help you locate the nearest garage easily from your vehicle fault site.
+        \n2.JumpStart will help you on how to fix your car.
+        \n3.JumpStart will not only guide you but also educate you some of the simple vehicle fixing solutions,
+        \n4.JumpStart will also help you easily diagnose complex faults and repair.
 
-        Try it Out
+        \nTry it Out"
     </string>
     <string name="title_activity_lorry_jump_start">Lorry JumpStart</string>
     <string name="title_activity_garage__maps">Garage Map Routes</string>
@@ -22,8 +22,11 @@
     <string name="title_activity_car__garage__maps">Garage Map Routes</string>
     <string name="title_activity_pickup__garage__maps">Garage Map Routes</string>
 
+    <!--
+    Car Faults Strings
+    -->
     <string-array name="car_faults">
-        <item>Sample Car Faults</item>
+        <item>Choose Car Faults</item>
         <item>Faulty Filter</item>
         <item>Faulty GasLifts</item>
         <item>Faulty Antenna</item>
@@ -31,4 +34,81 @@
         <item>Faulty Bulbs</item>
         <item>Faulty sun roof</item>
     </string-array>
+
+    <string name="Filter">
+        "1. Identify the cold air intake system of the truck’s engine. That is where the air filter is installed.\n2. Identify the adjacent parts next to the faulty filter and remove them.\n3. Start removing the clamps, hooks, fasteners, clips, hoses and any other holding part on the engine.\n4. Remove Air Intake System.\n5. Clean the Parts.\n6. Replace the Air Filter.\n7. Close and Check."
+    </string>
+
+    <string name="gasLift">
+        "1. Lift the hatch slightly higher than its normal open position and have a friend hold the hatch up while you remove the gas lift. Or lock it in place with a lift support clamp.\n2. To disengage the spring clip, simply shove a small flat blade screwdriver between the clip and the cylinder.\n3.Then pull the cylinder off the ball stud.\n4. Replace the gas lift.\n5. Close and Check."
+    </string>
+
+    <string name="antenna">
+        "1.  Disconnect the antenna cable from your radio and connect heavy string to the end.\n2. Then unscrew the antenna mount from the pillar and pull the old antenna and the string straight out.\n3. Attach the new antenna cable to the string, pull the cable back into the vehicle and connect it to your radio.\n4. Then secure the new antenna to the pillar using the screws provided.\n5. Close and Check."
+    </string>
+
+    <string name="cabinFault">
+        "1. Cabin air filters are usually located in the air ducts behind the glove box in late model vehicles.\n2. Must remove the access covers and slide out the old filter but note the direction of the airflow arrows so you can install the new filter in the proper orientation .\n3. Then reinstall the covers.\n4. Close and Check."
+    </string>
+
+    <string name="nonhead">
+        "1. Remove the retaining screws and pry off the lens.\n2.  Pull the bulb straight out of the socket.\n3. Handle the new bulb with gloved hands or hold it with a paper towel to prevent skin oils from depositing on the thin glass ? that can cause premature bulb failure.\n4. Then push the bulb into the socket until it clicks\n5. Reinstall the lens\n6. Close and Check."
+    </string>
+
+    <string name="roof">
+        "1. Open the sunroof and look for drain holes in the front and rear corners of your sunroof.\n2.  Once you locate the drains, duct tape a small rubber or plastic tube to the end of your shop vacuum and suck out any debris stuck in the drains.\n3. Then dribble water into each drain and check under the car to see if it's draining onto your driveway or garage floor.\n4. Then Flush the drain after snaking it with the speedometer cable. If it now runs free.\n5. Close and Check."
+    </string>
+
+    <!--
+    End of car fault Strings
+    -->
+
+    <!--
+    Pick Up Faults
+    -->
+    <string-array name="pickup_faults">
+        <item>Choose Pickup Faults</item>
+        <item>How Change Oil</item>
+        <item>Excess Smoke</item>
+    </string-array>
+
+    <string name="smoke">
+        "1. White smoke can mean the engine timing is off or the engine compression is weak.\n2. Blue smoke can mean worn cylinders, piston rings and valves.\n3. Black smoke can mean dirty air filters, bad injectors, a turbo problem or a problem in a cylinder head (insufficient fuel to the cylinder).\n4. Check and fix."
+    </string>
+
+    <string name="oil_One">
+        "1. Before you change your oil you should run your pickup and get the oil warm so that it will gather all the dirty particles.\n2. Drain the oil from the oil pan, and clean the bolt with a rag and screw it back in with your fingers.\n3. Use the oil filter wrench to unscrew the oil filter which is to the right of the oil pan."
+    </string>
+
+    <string name="oil_Two">
+        "4. Dispose of old filter and the new filter can be screwed in place\n5. Take fresh oil and rub it around the rim of the filter. Hand tighten the filter.\n6. Pour the recommended amount of oil into the vehicle.\n7. Run vehicle for ten minutes, then check oil levels with dipstick."
+    </string>
+
+    <!--
+    End of Pick Up Faults
+    -->
+
+    <!--
+    Lorry Faults
+    -->
+    <string-array name="lorry_faults">
+        <item>Choose Lorry Fault</item>
+        <item>Engine Start Failure</item>
+        <item>Engine Overheating</item>
+    </string-array>
+
+    <string name="startFailed">
+        "1. Check the fuel supply. Replace fuel filters.\n2. Check batteries and connections to starter.\n3. Check starter motor.\n4. Check fuel pump and fuel lines.\n5. Check fuel for contamination.Because dirty fuel will cause problems.\n6. Check and clean the air filters. Replace if necessary.\n7. Check the fuel Injectors.\n8. Close and Check. Then try to start the engine ones more."
+    </string>
+
+    <string name="overHeating_One">
+        "1. Check the air flow to the rad and ensure it isn’t blocked.\n2. Check to be sure all axles are rolling freely. Also be sure their are no brakes or tires dragging.\n3. Check the engine fan and belts."
+    </string>
+
+    <string name="overHeating_Two">
+        "4. Check outside air temperature. If the air temperature is very hot and you’re driving, gear down.\n5. Turn off the air conditioning on steep grades in hot weather. This will help keep the engine cool.\n6. Check the oil and coolant levels when the engine is cool. Check for leaks."
+    </string>
+    <!--
+    End of Lorry Faults
+    -->
 </resources>
