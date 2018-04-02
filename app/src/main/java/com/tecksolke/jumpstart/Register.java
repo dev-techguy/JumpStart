@@ -99,7 +99,8 @@ public class Register extends AppCompatActivity {
 
         if (firstName.getText().toString().equalsIgnoreCase("")) {
             firstName.setError("Enter your First Name");
-        } else if (sirName.getText().toString().equalsIgnoreCase("")) {
+        }
+        if (sirName.getText().toString().equalsIgnoreCase("")) {
             sirName.setError("Enter your Sir Name");
         }
         if (Email.getText().toString().equalsIgnoreCase("")) {
@@ -134,9 +135,9 @@ public class Register extends AppCompatActivity {
                 if (conpassword.getText().toString().length() < 8 || userPassowrd.getText().toString().length() < 8) {
                     userPassowrd.setError("You must have 8 characters in your password");
 //                    conpassword.setError("You must have 8 characters in your password");
-                }else if (!Patterns.EMAIL_ADDRESS.matcher(Email.getText().toString().trim()).matches()) {
+                } else if (!Patterns.EMAIL_ADDRESS.matcher(Email.getText().toString().trim()).matches()) {
                     Email.setError("Please Enter A valid Email");
-                }  else {
+                } else {
                     if (!conpassword.getText().toString().equalsIgnoreCase(userPassowrd.getText().toString())) {
                         niftyDialogBuilder
                                 .withIcon(getResources().getDrawable(R.mipmap.logologo))
