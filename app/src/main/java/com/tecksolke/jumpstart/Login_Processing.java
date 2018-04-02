@@ -133,7 +133,7 @@ public class Login_Processing extends AsyncTask<String,Void,String>{
         final NiftyDialogBuilder niftyDialogBuilder = NiftyDialogBuilder.getInstance(context);
         if(s.equalsIgnoreCase("200")){
             String username = Login.userName.getText().toString();
-            //pass valor username
+            //pass value username
             addUserToSqlite(username);
 
             //direct to another activity
