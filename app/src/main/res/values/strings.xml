@@ -35,28 +35,52 @@
         <item>Faulty sun roof</item>
     </string-array>
 
-    <string name="Filter">
-        "1. Identify the cold air intake system of the truck’s engine. That is where the air filter is installed.\n2. Identify the adjacent parts next to the faulty filter and remove them.\n3. Start removing the clamps, hooks, fasteners, clips, hoses and any other holding part on the engine.\n4. Remove Air Intake System.\n5. Clean the Parts.\n6. Replace the Air Filter.\n7. Close and Check."
+    <string name="FilterOne">
+        "1. Identify the cold air intake system of the truck’s engine. That is where the air filter is installed.\n2. Identify the adjacent parts next to the faulty filter and remove them."
     </string>
 
-    <string name="gasLift">
-        "1. Lift the hatch slightly higher than its normal open position and have a friend hold the hatch up while you remove the gas lift. Or lock it in place with a lift support clamp.\n2. To disengage the spring clip, simply shove a small flat blade screwdriver between the clip and the cylinder.\n3.Then pull the cylinder off the ball stud.\n4. Replace the gas lift.\n5. Close and Check."
+    <string name="FilterTwo">
+        "3. Start removing the clamps, hooks, fasteners, clips, hoses and any other holding part on the engine.\n4. Remove Air Intake System.\n5. Clean the Parts.\n6. Replace the Air Filter.\n7. Close and Check."
     </string>
 
-    <string name="antenna">
-        "1.  Disconnect the antenna cable from your radio and connect heavy string to the end.\n2. Then unscrew the antenna mount from the pillar and pull the old antenna and the string straight out.\n3. Attach the new antenna cable to the string, pull the cable back into the vehicle and connect it to your radio.\n4. Then secure the new antenna to the pillar using the screws provided.\n5. Close and Check."
+    <string name="gasLiftOne">
+        "1. Lift the hatch slightly higher than its normal open position and have a friend hold the hatch up while you remove the gas lift. Or lock it in place with a lift support clamp."
     </string>
 
-    <string name="cabinFault">
-        "1. Cabin air filters are usually located in the air ducts behind the glove box in late model vehicles.\n2. Must remove the access covers and slide out the old filter but note the direction of the airflow arrows so you can install the new filter in the proper orientation .\n3. Then reinstall the covers.\n4. Close and Check."
+    <string name="gasLiftTwo">
+        "2. To disengage the spring clip, simply shove a small flat blade screwdriver between the clip and the cylinder.\n3.Then pull the cylinder off the ball stud.\n4. Replace the gas lift.\n5. Close and Check."
     </string>
 
-    <string name="nonhead">
-        "1. Remove the retaining screws and pry off the lens.\n2.  Pull the bulb straight out of the socket.\n3. Handle the new bulb with gloved hands or hold it with a paper towel to prevent skin oils from depositing on the thin glass ? that can cause premature bulb failure.\n4. Then push the bulb into the socket until it clicks\n5. Reinstall the lens\n6. Close and Check."
+    <string name="antennaOne">
+        "1.  Disconnect the antenna cable from your radio and connect heavy string to the end.\n2. Then unscrew the antenna mount from the pillar and pull the old antenna and the string straight out."
     </string>
 
-    <string name="roof">
-        "1. Open the sunroof and look for drain holes in the front and rear corners of your sunroof.\n2.  Once you locate the drains, duct tape a small rubber or plastic tube to the end of your shop vacuum and suck out any debris stuck in the drains.\n3. Then dribble water into each drain and check under the car to see if it's draining onto your driveway or garage floor.\n4. Then Flush the drain after snaking it with the speedometer cable. If it now runs free.\n5. Close and Check."
+    <string name="antennaTwo">
+        "3. Attach the new antenna cable to the string, pull the cable back into the vehicle and connect it to your radio.\n4. Then secure the new antenna to the pillar using the screws provided.\n5. Close and Check."
+    </string>
+
+    <string name="cabinFaultOne">
+        "1. Cabin air filters are usually located in the air ducts behind the glove box in late model vehicles.\n2. Must remove the access covers and slide out the old filter but note the direction of the airflow arrows so you can install the new filter in the proper orientation ."
+    </string>
+
+    <string name="cabinFaultTwo">
+        "3. Then reinstall the covers.\n4. Close and Check."
+    </string>
+
+    <string name="nonheadOne">
+        "1. Remove the retaining screws and pry off the lens.\n2.  Pull the bulb straight out of the socket.\n3. Handle the new bulb with gloved hands or hold it with a paper towel to prevent skin oils from depositing on the thin glass ? that can cause premature bulb failure."
+    </string>
+
+    <string name="nonheadTwo">
+        "4. Then push the bulb into the socket until it clicks\n5. Reinstall the lens\n6. Close and Check."
+    </string>
+
+    <string name="roofOne">
+        "1. Open the sunroof and look for drain holes in the front and rear corners of your sunroof.\n2.  Once you locate the drains, duct tape a small rubber or plastic tube to the end of your shop vacuum and suck out any debris stuck in the drains."
+    </string>
+
+    <string name="roofTwo">
+        "3. Then dribble water into each drain and check under the car to see if it's draining onto your driveway or garage floor.\n4. Then Flush the drain after snaking it with the speedometer cable. If it now runs free.\n5. Close and Check."
     </string>
 
     <!--
@@ -97,8 +121,12 @@
         <item>Engine Overheating</item>
     </string-array>
 
-    <string name="startFailed">
-        "1. Check the fuel supply. Replace fuel filters.\n2. Check batteries and connections to starter.\n3. Check starter motor.\n4. Check fuel pump and fuel lines.\n5. Check fuel for contamination.Because dirty fuel will cause problems.\n6. Check and clean the air filters. Replace if necessary.\n7. Check the fuel Injectors.\n8. Close and Check. Then try to start the engine ones more."
+    <string name="startFailedOne">
+        "1. Check the fuel supply. Replace fuel filters.\n2. Check batteries and connections to starter.\n3. Check starter motor.\n4. Check fuel pump and fuel lines."
+    </string>
+
+    <string name="startFailedTwo">
+        "5. Check fuel for contamination.Because dirty fuel will cause problems.\n6. Check and clean the air filters. Replace if necessary.\n7. Check the fuel Injectors.\n8. Close and Check. Then try to start the engine ones more."
     </string>
 
     <string name="overHeating_One">

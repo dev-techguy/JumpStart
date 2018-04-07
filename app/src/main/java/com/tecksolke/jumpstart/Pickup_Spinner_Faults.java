@@ -126,9 +126,11 @@ public class Pickup_Spinner_Faults extends Fragment {
         if (spinnerFaults.getSelectedItem().toString().equalsIgnoreCase("Choose Pickup Faults")) {
             toSpeech.speak("Please choose a pickup fault to jumpstart", TextToSpeech.QUEUE_FLUSH, null);
         } else if (spinnerFaults.getSelectedItem().toString().equalsIgnoreCase("How Change Oil")) {
-          smokyEngine();
+            toSpeech.stop();
+            changeOil();
         } else if (spinnerFaults.getSelectedItem().toString().equalsIgnoreCase("Excess Smoke")) {
-           changeOil();
+            toSpeech.stop();
+            smokyEngine();
         }
     }
 

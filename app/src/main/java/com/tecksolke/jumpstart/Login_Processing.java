@@ -35,8 +35,8 @@ import static android.content.ContentValues.TAG;
 public class Login_Processing extends AsyncTask<String,Void,String>{
 
     TemporaryDB temporaryDB;
-    HttpURLConnection httpURLConnection;
-    Context context;
+    private HttpURLConnection httpURLConnection;
+    private Context context;
 
 
     Login_Processing(Context ctx) {
@@ -57,7 +57,7 @@ public class Login_Processing extends AsyncTask<String,Void,String>{
         //build a notification to the user
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(context)
-                        .setSmallIcon(R.mipmap.logo)
+                        .setSmallIcon(R.drawable.ic_error)
                         .setContentTitle("Login Status!")
                         .setContentIntent(pendingIntent)
                         .setAutoCancel(true)

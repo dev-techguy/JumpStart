@@ -31,9 +31,8 @@ import java.net.URLEncoder;
 
 public class PasswordUpdate_Processing extends AsyncTask<String,Void,String>{
 
-    TemporaryDB temporaryDB;
-    HttpURLConnection httpURLConnection;
-    Context context;
+    private HttpURLConnection httpURLConnection;
+    private Context context;
 
 
     PasswordUpdate_Processing(Context ctx) {
@@ -54,7 +53,7 @@ public class PasswordUpdate_Processing extends AsyncTask<String,Void,String>{
         //build a notification to the user
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(context)
-                        .setSmallIcon(R.mipmap.logo)
+                        .setSmallIcon(R.drawable.ic_error)
                         .setContentTitle("Password Resenting Status!")
                         .setContentIntent(pendingIntent)
                         .setAutoCancel(true)

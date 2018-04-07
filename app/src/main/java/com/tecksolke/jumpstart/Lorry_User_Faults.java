@@ -229,7 +229,8 @@ public class Lorry_User_Faults extends Fragment {
     //lorry faults processing inference engines
     private void engineStart() {
         final String state = "Engine won’t start.";
-        final String startFailed = resources.getString(R.string.startFailed);
+        final String startFailedOne = resources.getString(R.string.startFailedOne);
+        final String startFailedTwo = resources.getString(R.string.startFailedTwo);
         //speak
         toSpeech.speak(state, TextToSpeech.QUEUE_FLUSH, null);
 
@@ -246,24 +247,43 @@ public class Lorry_User_Faults extends Fragment {
             @Override
             public void run() {
                 //speak to user
-                toSpeech.speak(startFailed, TextToSpeech.QUEUE_FLUSH, null);
+                toSpeech.speak(startFailedOne, TextToSpeech.QUEUE_FLUSH, null);
                 //show dialog
                 niftyDialogBuilder
                         .withTitle(state)
                         .withTitleColor("#9dffffff")
-                        .withMessage(startFailed)
+                        .withMessage(startFailedOne)
                         .withMessageColor("#9dffffff")
                         .withDialogColor("#2A3342")
-                        .withButton1Text("OK")
+                        .withButton1Text("NEXT STEPS")
                         .withDuration(700)
                         .isCancelable(false)
                         .withEffect(Effectstype.Fall)
                         .setButton1Click(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                toSpeech.stop();
                                 niftyDialogBuilder.cancel();
-                                jumpHelpfull();
+                                //SPEAK TO USER
+                                toSpeech.speak(startFailedTwo, TextToSpeech.QUEUE_FLUSH, null);
+                                niftyDialogBuilder
+                                        .withTitle(state)
+                                        .withTitleColor("#9dffffff")
+                                        .withMessage(startFailedTwo)
+                                        .withMessageColor("#9dffffff")
+                                        .withDialogColor("#2A3342")
+                                        .withButton1Text("OK")
+                                        .withDuration(700)
+                                        .isCancelable(false)
+                                        .withEffect(Effectstype.Fall)
+                                        .setButton1Click(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                toSpeech.stop();
+                                                niftyDialogBuilder.cancel();
+                                                jumpHelpfull();
+                                            }
+                                        })
+                                        .show();
                             }
                         })
                         .show();

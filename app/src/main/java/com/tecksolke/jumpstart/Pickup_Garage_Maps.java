@@ -50,7 +50,7 @@ public class Pickup_Garage_Maps extends AppCompatActivity implements OnMapReadyC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pickup__garage__maps);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         temporaryDB = new TemporaryDB(this);

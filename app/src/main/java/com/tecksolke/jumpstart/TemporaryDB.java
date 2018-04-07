@@ -41,11 +41,7 @@ public class TemporaryDB extends SQLiteOpenHelper {
         long result = db.insert(TABLE_NAME, null, contentValues);
         db.close();
 
-        if (result == -1) {
-            return false;
-        } else {
-            return true;
-        }
+        return result != -1;
     }
 
     //read data
@@ -63,11 +59,7 @@ public class TemporaryDB extends SQLiteOpenHelper {
         long result = db.update(TABLE_NAME, contentValues, "USERNAME =?", new String[]{username});
         db.close();
 
-        if (result == -1) {
-            return false;
-        } else {
-            return true;
-        }
+        return result != -1;
     }
 
     //delete specific data in database
