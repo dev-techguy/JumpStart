@@ -228,6 +228,7 @@ public class Car_User_Faults extends Fragment {
     //method for processing car fault
     public void processcarFaults() {
         if (faultype.getText().toString().equalsIgnoreCase("")) {
+            toSpeech.stop();
             toSpeech.speak("Please Enter Car,  Fault To JumpStart", TextToSpeech.QUEUE_FLUSH, null);
             faultype.setError("Please Enter Car Fault To JumpStart...");
         } else if ((faultype.getText().toString().equalsIgnoreCase("Hey") || faultype.getText().toString().equalsIgnoreCase("Hello") || faultype.getText().toString().equalsIgnoreCase("hallo") || faultype.getText().toString().equalsIgnoreCase("hallo"))) {

@@ -210,6 +210,7 @@ public class Lorry_User_Faults extends Fragment {
     //method for processing lorry fault
     public void processLorryFaults() {
         if (faultype.getText().toString().equalsIgnoreCase("")) {
+            toSpeech.stop();
             toSpeech.speak("Please Enter Lorry,  Fault To JumpStart", TextToSpeech.QUEUE_FLUSH, null);
             faultype.setError("Please Enter Lorry Fault To JumpStart...");
         } else if ((faultype.getText().toString().equalsIgnoreCase("Hey") || faultype.getText().toString().equalsIgnoreCase("Hello") || faultype.getText().toString().equalsIgnoreCase("hallo")|| faultype.getText().toString().equalsIgnoreCase("hallo"))) {

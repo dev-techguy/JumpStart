@@ -124,6 +124,7 @@ public class Lorry_Spinner_Faults extends Fragment {
 
     private void adapterLorryProcessing() {
         if (spinnerFaults.getSelectedItem().toString().equalsIgnoreCase("Choose Lorry Fault")) {
+            toSpeech.stop();
             toSpeech.speak("Please choose a lorry fault to jumpstart", TextToSpeech.QUEUE_FLUSH, null);
         } else if (spinnerFaults.getSelectedItem().toString().equalsIgnoreCase("Engine Start Failure")) {
             toSpeech.stop();

@@ -123,6 +123,7 @@ public class Car_Spinner_Faults extends Fragment {
      */
     private void adapterCarProcessing() {
         if (spinnerFaults.getSelectedItem().toString().equalsIgnoreCase("Choose Car Faults")) {
+            toSpeech.stop();
             toSpeech.speak("Please choose a car fault to jumpstart", TextToSpeech.QUEUE_FLUSH, null);
         } else if (spinnerFaults.getSelectedItem().toString().equalsIgnoreCase("Faulty Filter")) {
             toSpeech.stop();

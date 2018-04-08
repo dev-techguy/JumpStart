@@ -213,6 +213,7 @@ public class Pickup_User_Faults extends Fragment {
     //method for processing pickup fault
     public void processpickupFaults() {
         if (faultype.getText().toString().equalsIgnoreCase("")) {
+            toSpeech.stop();
             toSpeech.speak("Please Enter Pickup,  Fault To JumpStart", TextToSpeech.QUEUE_FLUSH, null);
             faultype.setError("Please Enter Pickup Fault To JumpStart...");
         } else if ((faultype.getText().toString().equalsIgnoreCase("Hey") || faultype.getText().toString().equalsIgnoreCase("Hello") || faultype.getText().toString().equalsIgnoreCase("hallo") || faultype.getText().toString().equalsIgnoreCase("hallo"))) {
