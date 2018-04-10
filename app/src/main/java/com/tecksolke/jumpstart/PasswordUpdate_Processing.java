@@ -168,6 +168,8 @@ public class PasswordUpdate_Processing extends AsyncTask<String,Void,String>{
                         }
                     })
                     .show();
+            PasswordUpdated.passReset.setText("");
+            PasswordUpdated.confirmReset.setText("");
         }else{
             niftyDialogBuilder
                     .withTitle("Network Status")

@@ -158,6 +158,7 @@ public class Login_Processing extends AsyncTask<String,Void,String>{
                         }
                     })
                     .show();
+            Login.userPassword.setText("");
         }else{
             niftyDialogBuilder
                     .withTitle("Network Status")
