@@ -136,7 +136,7 @@ public class Register extends AppCompatActivity {
                     userPassowrd.setError("You must have 8 characters in your password");
 //                    conpassword.setError("You must have 8 characters in your password");
                 } else if (!Patterns.EMAIL_ADDRESS.matcher(Email.getText().toString().trim()).matches()) {
-                    Email.setError("Please Enter A valid Email");
+                    Email.setError("Please Enter A valid Email i.e myemail@gmail.com");
                 } else {
                     if (!conpassword.getText().toString().equalsIgnoreCase(userPassowrd.getText().toString())) {
                         niftyDialogBuilder
