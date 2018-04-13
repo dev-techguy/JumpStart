@@ -35,6 +35,7 @@ public class Car_Spinner_Faults extends Fragment {
     AppCompatSpinner spinnerFaults;
     Resources resources;
     String[] carFaults;
+    String chooseFault;
     ArrayAdapter<String> adapter;
     ImageView imageView;
 
@@ -112,6 +113,7 @@ public class Car_Spinner_Faults extends Fragment {
         buttonSpinner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                toSpeech.stop();
                 adapterCarProcessing();
             }
         });
@@ -123,8 +125,7 @@ public class Car_Spinner_Faults extends Fragment {
      */
     private void adapterCarProcessing() {
         if (spinnerFaults.getSelectedItem().toString().equalsIgnoreCase("Choose Car Faults")) {
-            toSpeech.stop();
-            toSpeech.speak("Please choose a car fault to jumpstart", TextToSpeech.QUEUE_FLUSH, null);
+           chooseCarFault();
         } else if (spinnerFaults.getSelectedItem().toString().equalsIgnoreCase("Faulty Filter")) {
             toSpeech.stop();
             carFilter();
@@ -207,7 +208,7 @@ public class Car_Spinner_Faults extends Fragment {
                                             public void onClick(View v) {
                                                 toSpeech.stop();
                                                 niftyDialogBuilder.cancel();
-                                                jumpHelpfull();
+                                                jumpHelpful();
                                             }
                                         })
                                         .show();
@@ -276,7 +277,7 @@ public class Car_Spinner_Faults extends Fragment {
                                             public void onClick(View v) {
                                                 toSpeech.stop();
                                                 niftyDialogBuilder.cancel();
-                                                jumpHelpfull();
+                                                jumpHelpful();
                                             }
                                         })
                                         .show();
@@ -345,7 +346,7 @@ public class Car_Spinner_Faults extends Fragment {
                                             public void onClick(View v) {
                                                 toSpeech.stop();
                                                 niftyDialogBuilder.cancel();
-                                                jumpHelpfull();
+                                                jumpHelpful();
                                             }
                                         })
                                         .show();
@@ -414,7 +415,7 @@ public class Car_Spinner_Faults extends Fragment {
                                             public void onClick(View v) {
                                                 toSpeech.stop();
                                                 niftyDialogBuilder.cancel();
-                                                jumpHelpfull();
+                                                jumpHelpful();
                                             }
                                         })
                                         .show();
@@ -483,7 +484,7 @@ public class Car_Spinner_Faults extends Fragment {
                                             public void onClick(View v) {
                                                 toSpeech.stop();
                                                 niftyDialogBuilder.cancel();
-                                                jumpHelpfull();
+                                                jumpHelpful();
                                             }
                                         })
                                         .show();
@@ -552,7 +553,7 @@ public class Car_Spinner_Faults extends Fragment {
                                             public void onClick(View v) {
                                                 toSpeech.stop();
                                                 niftyDialogBuilder.cancel();
-                                                jumpHelpfull();
+                                                jumpHelpful();
                                             }
                                         })
                                         .show();
@@ -563,11 +564,42 @@ public class Car_Spinner_Faults extends Fragment {
         }, 3500);
     }
 
+    //function for user has'nt choose car fault
+    private void chooseCarFault(){
+        chooseFault = "Please choose a car fault to jumpstart";
+        //speak to user
+        toSpeech.speak(chooseFault, TextToSpeech.QUEUE_FLUSH, null);
+        /**
+         * niftyDialogBuilder
+         * {@link NiftyDialogBuilder}
+         * */
+        niftyDialogBuilder
+                .withIcon(getResources().getDrawable(R.mipmap.logologo))
+                .withTitle("Car Fault Inference")
+                .withTitleColor("#9dffffff")
+                .withMessage(chooseFault)
+                .withMessageColor("#9dffffff")
+                .withDialogColor("#2A3342")
+                .withButton1Text("OK")
+                .withDuration(700)
+                .isCancelable(false)
+                .withEffect(Effectstype.Shake)
+                .setButton1Click(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        toSpeech.stop();
+                        niftyDialogBuilder.cancel();
+                    }
+                })
+                .show();
+    }
+
     //jumpStart HElpFul
-    private void jumpHelpfull() {
+    private void jumpHelpful() {
         //talk
         toSpeech.speak("Was JumpStart Helpful", TextToSpeech.QUEUE_FLUSH, null);
         niftyDialogBuilder
+                .withIcon(getResources().getDrawable(R.mipmap.logologo))
                 .withTitle("JumpStart")
                 .withTitleColor("#9dffffff")
                 .withMessage("Was JumpStart Helpful")

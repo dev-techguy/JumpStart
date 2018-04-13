@@ -375,6 +375,7 @@ public class Pickup_User_Faults extends Fragment {
         //talk
         toSpeech.speak("Was JumpStart Helpful", TextToSpeech.QUEUE_FLUSH, null);
         niftyDialogBuilder
+                .withIcon(getResources().getDrawable(R.mipmap.logologo))
                 .withTitle("JumpStart")
                 .withTitleColor("#9dffffff")
                 .withMessage("Was JumpStart Helpful")

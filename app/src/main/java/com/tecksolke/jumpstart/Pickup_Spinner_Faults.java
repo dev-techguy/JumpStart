@@ -38,6 +38,7 @@ public class Pickup_Spinner_Faults extends Fragment {
     AppCompatSpinner spinnerFaults;
     Resources resources;
     String[] pickupFaults;
+    String chooseFault;
     ArrayAdapter<String> adapter;
 
     public Pickup_Spinner_Faults() {
@@ -124,8 +125,7 @@ public class Pickup_Spinner_Faults extends Fragment {
 
     private void adapterPickUpProcessing() {
         if (spinnerFaults.getSelectedItem().toString().equalsIgnoreCase("Choose Pickup Faults")) {
-            toSpeech.stop();
-            toSpeech.speak("Please choose a pickup fault to jumpstart", TextToSpeech.QUEUE_FLUSH, null);
+           choosePickUpFault();
         } else if (spinnerFaults.getSelectedItem().toString().equalsIgnoreCase("How Change Oil")) {
             toSpeech.stop();
             changeOil();
@@ -251,11 +251,42 @@ public class Pickup_Spinner_Faults extends Fragment {
         }, 3500);
     }
 
+    //function for user has'nt choose PickUp fault
+    private void choosePickUpFault(){
+        chooseFault = "Please choose a pickup fault to jumpstart";
+        //speak to user
+        toSpeech.speak(chooseFault, TextToSpeech.QUEUE_FLUSH, null);
+        /**
+         * niftyDialogBuilder
+         * {@link NiftyDialogBuilder}
+         * */
+        niftyDialogBuilder
+                .withIcon(getResources().getDrawable(R.mipmap.logologo))
+                .withTitle("PickUp Fault Inference")
+                .withTitleColor("#9dffffff")
+                .withMessage(chooseFault)
+                .withMessageColor("#9dffffff")
+                .withDialogColor("#2A3342")
+                .withButton1Text("OK")
+                .withDuration(700)
+                .isCancelable(false)
+                .withEffect(Effectstype.Shake)
+                .setButton1Click(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        toSpeech.stop();
+                        niftyDialogBuilder.cancel();
+                    }
+                })
+                .show();
+    }
+
     //jumpStart HElpFul
     private void jumpHelpfull() {
         //talk
         toSpeech.speak("Was JumpStart Helpful", TextToSpeech.QUEUE_FLUSH, null);
         niftyDialogBuilder
+                .withIcon(getResources().getDrawable(R.mipmap.logologo))
                 .withTitle("JumpStart")
                 .withTitleColor("#9dffffff")
                 .withMessage("Was JumpStart Helpful")
