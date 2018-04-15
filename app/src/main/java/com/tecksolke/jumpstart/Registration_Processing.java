@@ -9,7 +9,9 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.Toast;
 
 import com.gitonway.lee.niftymodaldialogeffects.lib.Effectstype;
 import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
@@ -36,6 +38,7 @@ public class Registration_Processing extends AsyncTask<String, Void, String> {
     TemporaryDB temporaryDB;
     private HttpURLConnection httpURLConnection;
     private Context context;
+    Toast toast;
 
 
     Registration_Processing(Context ctx) {
@@ -57,7 +60,7 @@ public class Registration_Processing extends AsyncTask<String, Void, String> {
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(context)
                         .setSmallIcon(R.drawable.ic_error)
-                        .setContentTitle("Registration Status!")
+                        .setContentTitle("JumpStart Registration Status!")
                         .setContentIntent(pendingIntent)
                         .setAutoCancel(true)
                         .setWhen(0)
@@ -69,6 +72,13 @@ public class Registration_Processing extends AsyncTask<String, Void, String> {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         //post the notification to the bar
         notificationManager.notify(0, mBuilder.build());
+        /**
+         * Make a {@link Toast}
+         * */
+        toast = new Toast(context);
+        toast.setGravity(Gravity.CENTER,0,0);
+        toast.setText(notifMessage);
+        toast.show();
     }
 
     @Override

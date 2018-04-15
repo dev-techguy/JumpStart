@@ -32,7 +32,7 @@
         <item>Faulty Antenna</item>
         <item>Faulty Cabin</item>
         <item>Faulty Bulbs</item>
-        <item>Faulty sun roof</item>
+        <item>Faulty Leaky Sunroof</item>
     </string-array>
 
     <string name="FilterOne">
@@ -40,7 +40,11 @@
     </string>
 
     <string name="FilterTwo">
-        "3. Start removing the clamps, hooks, fasteners, clips, hoses and any other holding part on the engine.\n4. Remove Air Intake System.\n5. Clean the Parts.\n6. Replace the Air Filter.\n7. Close and Check."
+        "3. Start removing the clamps, hooks, fasteners, clips, hoses and any other holding part on the engine.\n4. Remove Air Intake System."
+    </string>
+
+    <string name="FilterThree">
+        "5. Clean the Parts.\n6. Replace the Air Filter.\n7. Close and Check."
     </string>
 
     <string name="gasLiftOne">
@@ -48,7 +52,11 @@
     </string>
 
     <string name="gasLiftTwo">
-        "2. To disengage the spring clip, simply shove a small flat blade screwdriver between the clip and the cylinder.\n3.Then pull the cylinder off the ball stud.\n4. Replace the gas lift.\n5. Close and Check."
+        "2. To disengage the spring clip, simply shove a small flat blade screwdriver between the clip and the cylinder.\n3.Then pull the cylinder off the ball stud."
+    </string>
+
+    <string name="gasLiftThree">
+        "4. Replace the gas lift.\n5. Close and Check."
     </string>
 
     <string name="antennaOne">
@@ -56,31 +64,51 @@
     </string>
 
     <string name="antennaTwo">
-        "3. Attach the new antenna cable to the string, pull the cable back into the vehicle and connect it to your radio.\n4. Then secure the new antenna to the pillar using the screws provided.\n5. Close and Check."
+        "3. Attach the new antenna cable to the string, pull the cable back into the vehicle and connect it to your radio."
+    </string>
+
+    <string name="antennaThree">
+        "4. Then secure the new antenna to the pillar using the screws provided.\n5. Close and Check."
     </string>
 
     <string name="cabinFaultOne">
-        "1. Cabin air filters are usually located in the air ducts behind the glove box in late model vehicles.\n2. Must remove the access covers and slide out the old filter but note the direction of the airflow arrows so you can install the new filter in the proper orientation ."
+        "1. Cabin air filters are usually located in the air ducts behind the glove box in late model vehicles."
     </string>
 
     <string name="cabinFaultTwo">
+        "2. Must remove the access covers and slide out the old filter but note the direction of the airflow arrows so you can install the new filter in the proper orientation ."
+    </string>
+
+    <string name="cabinFaultThree">
         "3. Then reinstall the covers.\n4. Close and Check."
     </string>
 
     <string name="nonheadOne">
-        "1. Remove the retaining screws and pry off the lens.\n2.  Pull the bulb straight out of the socket.\n3. Handle the new bulb with gloved hands or hold it with a paper towel to prevent skin oils from depositing on the thin glass ? that can cause premature bulb failure."
+        "1. Remove the retaining screws and pry off the lens."
     </string>
 
     <string name="nonheadTwo">
+        "2.  Pull the bulb straight out of the socket.\n3. Handle the new bulb with gloved hands or hold it with a paper towel to prevent skin oils from depositing on the thin glass ? that can cause premature bulb failure."
+    </string>
+
+    <string name="nonheadThree">
         "4. Then push the bulb into the socket until it clicks\n5. Reinstall the lens\n6. Close and Check."
     </string>
 
     <string name="roofOne">
-        "1. Open the sunroof and look for drain holes in the front and rear corners of your sunroof.\n2.  Once you locate the drains, duct tape a small rubber or plastic tube to the end of your shop vacuum and suck out any debris stuck in the drains."
+        "1. Open the sunroof and look for drain holes in the front and rear corners of your sunroof."
     </string>
 
     <string name="roofTwo">
-        "3. Then dribble water into each drain and check under the car to see if it's draining onto your driveway or garage floor.\n4. Then Flush the drain after snaking it with the speedometer cable. If it now runs free.\n5. Close and Check."
+        "2.  Once you locate the drains, duct tape a small rubber or plastic tube to the end of your shop vacuum and suck out any debris stuck in the drains."
+    </string>
+
+    <string name="roofThree">
+        "3. Then dribble water into each drain and check under the car to see if it's draining onto your driveway or garage floor."
+    </string>
+
+    <string name="roofFour">
+        "4. Then Flush the drain after snaking it with the speedometer cable. If it now runs free.\n5. Close and Check."
     </string>
 
     <!--
@@ -96,16 +124,28 @@
         <item>Excess Smoke</item>
     </string-array>
 
-    <string name="smoke">
-        "1. White smoke can mean the engine timing is off or the engine compression is weak.\n2. Blue smoke can mean worn cylinders, piston rings and valves.\n3. Black smoke can mean dirty air filters, bad injectors, a turbo problem or a problem in a cylinder head (insufficient fuel to the cylinder).\n4. Check and fix."
+    <string name="smokeOne">
+        "1. White smoke can mean the engine timing is off or the engine compression is weak.\n2. Blue smoke can mean worn cylinders, piston rings and valves."
+    </string>
+
+    <string name="smokeTwo">
+        "3. Black smoke can mean dirty air filters, bad injectors, a turbo problem or a problem in a cylinder head (insufficient fuel to the cylinder).\n4. Check and fix."
     </string>
 
     <string name="oil_One">
-        "1. Before you change your oil you should run your pickup and get the oil warm so that it will gather all the dirty particles.\n2. Drain the oil from the oil pan, and clean the bolt with a rag and screw it back in with your fingers.\n3. Use the oil filter wrench to unscrew the oil filter which is to the right of the oil pan."
+        "1. Before you change your oil you should run your pickup and get the oil warm so that it will gather all the dirty particles.\n2. Drain the oil from the oil pan, and clean the bolt with a rag and screw it back in with your fingers."
     </string>
 
     <string name="oil_Two">
-        "4. Dispose of old filter and the new filter can be screwed in place\n5. Take fresh oil and rub it around the rim of the filter. Hand tighten the filter.\n6. Pour the recommended amount of oil into the vehicle.\n7. Run vehicle for ten minutes, then check oil levels with dipstick."
+        "3. Use the oil filter wrench to unscrew the oil filter which is to the right of the oil pan.\n4. Dispose of old filter and the new filter can be screwed in place"
+    </string>
+
+    <string name="oil_Three">
+        "\n5. Take fresh oil and rub it around the rim of the filter. Hand tighten the filter.\n6. Pour the recommended amount of oil into the vehicle."
+    </string>
+
+    <string name="oil_Four">
+        "7. Run vehicle for ten minutes, then check oil levels with dipstick."
     </string>
 
     <!--
@@ -126,7 +166,11 @@
     </string>
 
     <string name="startFailedTwo">
-        "5. Check fuel for contamination.Because dirty fuel will cause problems.\n6. Check and clean the air filters. Replace if necessary.\n7. Check the fuel Injectors.\n8. Close and Check. Then try to start the engine ones more."
+        "5. Check fuel for contamination.Because dirty fuel will cause problems.\n6. Check and clean the air filters. Replace if necessary."
+    </string>
+
+    <string name="startFailedThree">
+        "7. Check the fuel Injectors.\n8. Close and Check. Then try to start the engine ones more."
     </string>
 
     <string name="overHeating_One">
@@ -134,7 +178,11 @@
     </string>
 
     <string name="overHeating_Two">
-        "4. Check outside air temperature. If the air temperature is very hot and you’re driving, gear down.\n5. Turn off the air conditioning on steep grades in hot weather. This will help keep the engine cool.\n6. Check the oil and coolant levels when the engine is cool. Check for leaks."
+        "4. Check outside air temperature. If the air temperature is very hot and you’re driving, gear down.\n5. Turn off the air conditioning on steep grades in hot weather. This will help keep the engine cool."
+    </string>
+
+    <string name="overHeating_Three">
+        "6. Check the oil and coolant levels when the engine is cool.\n7. Check for leaks. All this leads to engine overheating."
     </string>
     <!--
     End of Lorry Faults

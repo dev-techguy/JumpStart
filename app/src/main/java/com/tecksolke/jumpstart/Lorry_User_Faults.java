@@ -159,7 +159,7 @@ public class Lorry_User_Faults extends Fragment {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak the problem Of Your Lorry");
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak the fault Of Your Lorry");
         intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.ENGLISH);
         try {
@@ -183,7 +183,7 @@ public class Lorry_User_Faults extends Fragment {
                         public void onClick(View v) {
                             toSpeech.stop();
                             niftyDialogBuilder.cancel();
-                            jumpHelpfull();
+                            jumpHelpful();
                         }
                     })
                     .show();
@@ -229,17 +229,19 @@ public class Lorry_User_Faults extends Fragment {
      * */
     //lorry faults processing inference engines
     private void engineStart() {
-        final String state = "Engine won’t start.";
+        final String state = "Engine Start.";
+        final String stateSpeech = "How to fix Engine start failure.";
         final String startFailedOne = resources.getString(R.string.startFailedOne);
         final String startFailedTwo = resources.getString(R.string.startFailedTwo);
+        final String startFailedThree = resources.getString(R.string.startFailedThree);
         //speak
-        toSpeech.speak(state, TextToSpeech.QUEUE_FLUSH, null);
+        toSpeech.speak(stateSpeech, TextToSpeech.QUEUE_FLUSH, null);
 
         //get image to show in toast
         imageView.setImageResource(R.mipmap.start);
 
         //show image in toast
-        Toast toast = Toast.makeText(getActivity(), state, Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(getActivity(), stateSpeech, Toast.LENGTH_LONG);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.setView(imageView);
         toast.show();
@@ -251,6 +253,7 @@ public class Lorry_User_Faults extends Fragment {
                 toSpeech.speak(startFailedOne, TextToSpeech.QUEUE_FLUSH, null);
                 //show dialog
                 niftyDialogBuilder
+                        .withIcon(getResources().getDrawable(R.mipmap.logologo))
                         .withTitle(state)
                         .withTitleColor("#9dffffff")
                         .withMessage(startFailedOne)
@@ -263,16 +266,18 @@ public class Lorry_User_Faults extends Fragment {
                         .setButton1Click(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+                                toSpeech.stop();
                                 niftyDialogBuilder.cancel();
                                 //SPEAK TO USER
                                 toSpeech.speak(startFailedTwo, TextToSpeech.QUEUE_FLUSH, null);
                                 niftyDialogBuilder
+                                        .withIcon(getResources().getDrawable(R.mipmap.logologo))
                                         .withTitle(state)
                                         .withTitleColor("#9dffffff")
                                         .withMessage(startFailedTwo)
                                         .withMessageColor("#9dffffff")
                                         .withDialogColor("#2A3342")
-                                        .withButton1Text("OK")
+                                        .withButton1Text("NEXT STEPS")
                                         .withDuration(700)
                                         .isCancelable(false)
                                         .withEffect(Effectstype.Fall)
@@ -281,7 +286,28 @@ public class Lorry_User_Faults extends Fragment {
                                             public void onClick(View v) {
                                                 toSpeech.stop();
                                                 niftyDialogBuilder.cancel();
-                                                jumpHelpfull();
+                                                //SPEAK TO USER
+                                                toSpeech.speak(startFailedThree, TextToSpeech.QUEUE_FLUSH, null);
+                                                niftyDialogBuilder
+                                                        .withIcon(getResources().getDrawable(R.mipmap.logologo))
+                                                        .withTitle(state)
+                                                        .withTitleColor("#9dffffff")
+                                                        .withMessage(startFailedThree)
+                                                        .withMessageColor("#9dffffff")
+                                                        .withDialogColor("#2A3342")
+                                                        .withButton1Text("OK")
+                                                        .withDuration(700)
+                                                        .isCancelable(false)
+                                                        .withEffect(Effectstype.Fall)
+                                                        .setButton1Click(new View.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(View v) {
+                                                                toSpeech.stop();
+                                                                niftyDialogBuilder.cancel();
+                                                                jumpHelpful();
+                                                            }
+                                                        })
+                                                        .show();
                                             }
                                         })
                                         .show();
@@ -294,17 +320,19 @@ public class Lorry_User_Faults extends Fragment {
 
     //Overheating Engine
     private void overHeatingEngine(){
-        final String state = "How to Fix OverHeating Engine.";
+        final String state = "OverHeating Engine.";
+        final String stateSpeech = "How to Fix OverHeating Engine.";
         final String overheatingOne = resources.getString(R.string.overHeating_One);
         final String overheatingTwo = resources.getString(R.string.overHeating_Two);
+        final String overheatingThree = resources.getString(R.string.overHeating_Three);
         //speak
-        toSpeech.speak(state, TextToSpeech.QUEUE_FLUSH, null);
+        toSpeech.speak(stateSpeech, TextToSpeech.QUEUE_FLUSH, null);
 
         //get image to show in toast
         imageView.setImageResource(R.mipmap.overheating);
 
         //show image in toast
-        Toast toast = Toast.makeText(getActivity(), state, Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(getActivity(), stateSpeech, Toast.LENGTH_LONG);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.setView(imageView);
         toast.show();
@@ -316,6 +344,7 @@ public class Lorry_User_Faults extends Fragment {
                 toSpeech.speak(overheatingOne, TextToSpeech.QUEUE_FLUSH, null);
                 //show dialog
                 niftyDialogBuilder
+                        .withIcon(getResources().getDrawable(R.mipmap.logologo))
                         .withTitle(state)
                         .withTitleColor("#9dffffff")
                         .withMessage(overheatingOne)
@@ -328,16 +357,18 @@ public class Lorry_User_Faults extends Fragment {
                         .setButton1Click(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+                                toSpeech.stop();
                                 niftyDialogBuilder.cancel();
                                 //SPEAK TO USER
                                 toSpeech.speak(overheatingTwo, TextToSpeech.QUEUE_FLUSH, null);
                                 niftyDialogBuilder
+                                        .withIcon(getResources().getDrawable(R.mipmap.logologo))
                                         .withTitle(state)
                                         .withTitleColor("#9dffffff")
                                         .withMessage(overheatingTwo)
                                         .withMessageColor("#9dffffff")
                                         .withDialogColor("#2A3342")
-                                        .withButton1Text("OK")
+                                        .withButton1Text("NEXT STEPS")
                                         .withDuration(700)
                                         .isCancelable(false)
                                         .withEffect(Effectstype.Fall)
@@ -346,7 +377,28 @@ public class Lorry_User_Faults extends Fragment {
                                             public void onClick(View v) {
                                                 toSpeech.stop();
                                                 niftyDialogBuilder.cancel();
-                                                jumpHelpfull();
+                                                //SPEAK TO USER
+                                                toSpeech.speak(overheatingThree, TextToSpeech.QUEUE_FLUSH, null);
+                                                niftyDialogBuilder
+                                                        .withIcon(getResources().getDrawable(R.mipmap.logologo))
+                                                        .withTitle(state)
+                                                        .withTitleColor("#9dffffff")
+                                                        .withMessage(overheatingThree)
+                                                        .withMessageColor("#9dffffff")
+                                                        .withDialogColor("#2A3342")
+                                                        .withButton1Text("OK")
+                                                        .withDuration(700)
+                                                        .isCancelable(false)
+                                                        .withEffect(Effectstype.Fall)
+                                                        .setButton1Click(new View.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(View v) {
+                                                                toSpeech.stop();
+                                                                niftyDialogBuilder.cancel();
+                                                                jumpHelpful();
+                                                            }
+                                                        })
+                                                        .show();
                                             }
                                         })
                                         .show();
@@ -378,14 +430,14 @@ public class Lorry_User_Faults extends Fragment {
                     public void onClick(View v) {
                         toSpeech.stop();
                         niftyDialogBuilder.cancel();
-                        jumpHelpfull();
+                        jumpHelpful();
                     }
                 })
                 .show();
     }
 
     //jumpStart HElpFul
-    private void jumpHelpfull() {
+    private void jumpHelpful() {
         //talk
         toSpeech.speak("Was JumpStart Helpful", TextToSpeech.QUEUE_FLUSH, null);
         niftyDialogBuilder

@@ -8,7 +8,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v4.app.NotificationCompat;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.Toast;
 
 import com.gitonway.lee.niftymodaldialogeffects.lib.Effectstype;
 import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
@@ -33,6 +35,7 @@ public class PasswordUpdate_Processing extends AsyncTask<String,Void,String>{
 
     private HttpURLConnection httpURLConnection;
     private Context context;
+    Toast toast;
 
 
     PasswordUpdate_Processing(Context ctx) {
@@ -54,7 +57,7 @@ public class PasswordUpdate_Processing extends AsyncTask<String,Void,String>{
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(context)
                         .setSmallIcon(R.drawable.ic_error)
-                        .setContentTitle("Password Resenting Status!")
+                        .setContentTitle("Password Reset Status!")
                         .setContentIntent(pendingIntent)
                         .setAutoCancel(true)
                         .setWhen(0)
@@ -66,6 +69,13 @@ public class PasswordUpdate_Processing extends AsyncTask<String,Void,String>{
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         //post the notification to the bar
         notificationManager.notify(0, mBuilder.build());
+        /**
+         * Make a {@link android.widget.Toast}
+         * */
+        toast = new Toast(context);
+        toast.setGravity(Gravity.CENTER,0,0);
+        toast.setText(notifMessage);
+        toast.show();
     }
 
     @Override
@@ -129,7 +139,7 @@ public class PasswordUpdate_Processing extends AsyncTask<String,Void,String>{
         if(s.equalsIgnoreCase("200")){
             //notify
             niftyDialogBuilder
-                    .withTitle("Password Status Status")
+                    .withTitle("Password Reset Status")
                     .withTitleColor("#9dffffff")
                     .withMessage("Password Reset successfully.")
                     .withMessageColor("#9dffffff")
@@ -152,7 +162,7 @@ public class PasswordUpdate_Processing extends AsyncTask<String,Void,String>{
                     .show();
         }else if(s.equalsIgnoreCase("401")){
             niftyDialogBuilder
-                    .withTitle("Password Resenting Status")
+                    .withTitle("Password Reset Status")
                     .withTitleColor("#9dffffff")
                     .withMessage("Wrong details please try again")
                     .withMessageColor("#9dffffff")

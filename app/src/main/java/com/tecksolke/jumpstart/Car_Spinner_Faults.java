@@ -141,7 +141,7 @@ public class Car_Spinner_Faults extends Fragment {
         } else if (spinnerFaults.getSelectedItem().toString().equalsIgnoreCase("Faulty Bulbs")) {
             toSpeech.stop();
             nonHeadLights();
-        } else if (spinnerFaults.getSelectedItem().toString().equalsIgnoreCase("Faulty sun roof")) {
+        } else if (spinnerFaults.getSelectedItem().toString().equalsIgnoreCase("Faulty Leaky Sunroof")) {
             toSpeech.stop();
             sunRoof();
         }
@@ -152,17 +152,19 @@ public class Car_Spinner_Faults extends Fragment {
      */
     //carFilter
     private void carFilter() {
-        final String state = "How to Fix an Air Filter.";
+        final String state = "Air Filter.";
+        final String stateSpeech = "How to Fix an Air Filter.";
         final String filterFixingOne = resources.getString(R.string.FilterOne);
         final String filterFixingTwo = resources.getString(R.string.FilterTwo);
+        final String filterFixingThree = resources.getString(R.string.FilterThree);
         //speak
-        toSpeech.speak(state, TextToSpeech.QUEUE_FLUSH, null);
+        toSpeech.speak(stateSpeech, TextToSpeech.QUEUE_FLUSH, null);
 
         //get image to show in toast
         imageView.setImageResource(R.mipmap.filter);
 
         //show image in toast
-        Toast toast = Toast.makeText(getActivity(), state, Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(getActivity(), stateSpeech, Toast.LENGTH_LONG);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.setView(imageView);
         toast.show();
@@ -174,6 +176,7 @@ public class Car_Spinner_Faults extends Fragment {
                 toSpeech.speak(filterFixingOne, TextToSpeech.QUEUE_FLUSH, null);
                 //show dialog
                 niftyDialogBuilder
+                        .withIcon(getResources().getDrawable(R.mipmap.logologo))
                         .withTitle(state)
                         .withTitleColor("#9dffffff")
                         .withMessage(filterFixingOne)
@@ -194,12 +197,13 @@ public class Car_Spinner_Faults extends Fragment {
                                  * Show second NiftyDialog
                                  * */
                                 niftyDialogBuilder
+                                        .withIcon(getResources().getDrawable(R.mipmap.logologo))
                                         .withTitle(state)
                                         .withTitleColor("#9dffffff")
                                         .withMessage(filterFixingTwo)
                                         .withMessageColor("#9dffffff")
                                         .withDialogColor("#2A3342")
-                                        .withButton1Text("OK")
+                                        .withButton1Text("NEXT STEPS")
                                         .withDuration(700)
                                         .isCancelable(false)
                                         .withEffect(Effectstype.Fall)
@@ -208,7 +212,31 @@ public class Car_Spinner_Faults extends Fragment {
                                             public void onClick(View v) {
                                                 toSpeech.stop();
                                                 niftyDialogBuilder.cancel();
-                                                jumpHelpful();
+                                                //speak to user
+                                                toSpeech.speak(filterFixingThree, TextToSpeech.QUEUE_FLUSH, null);
+                                                /**
+                                                 * Show second NiftyDialog
+                                                 * */
+                                                niftyDialogBuilder
+                                                        .withIcon(getResources().getDrawable(R.mipmap.logologo))
+                                                        .withTitle(state)
+                                                        .withTitleColor("#9dffffff")
+                                                        .withMessage(filterFixingThree)
+                                                        .withMessageColor("#9dffffff")
+                                                        .withDialogColor("#2A3342")
+                                                        .withButton1Text("OK")
+                                                        .withDuration(700)
+                                                        .isCancelable(false)
+                                                        .withEffect(Effectstype.Fall)
+                                                        .setButton1Click(new View.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(View v) {
+                                                                toSpeech.stop();
+                                                                niftyDialogBuilder.cancel();
+                                                                jumpHelpful();
+                                                            }
+                                                        })
+                                                        .show();
                                             }
                                         })
                                         .show();
@@ -221,17 +249,19 @@ public class Car_Spinner_Faults extends Fragment {
 
     //gas lifts
     private void gasLifts() {
-        final String state = "How to Fix a Gas Lift.";
+        final String state = "Gas Lift.";
+        final String stateSpeech = "How to Fix a Gas Lift.";
         final String gasFixingOne = resources.getString(R.string.gasLiftOne);
         final String gasFixingTwo = resources.getString(R.string.gasLiftTwo);
+        final String gasFixingThree = resources.getString(R.string.gasLiftThree);
         //speak
-        toSpeech.speak(state, TextToSpeech.QUEUE_FLUSH, null);
+        toSpeech.speak(stateSpeech, TextToSpeech.QUEUE_FLUSH, null);
 
         //get image to show in toast
         imageView.setImageResource(R.mipmap.gaslifts);
 
         //show image in toast
-        Toast toast = Toast.makeText(getActivity(), state, Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(getActivity(), stateSpeech, Toast.LENGTH_LONG);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.setView(imageView);
         toast.show();
@@ -240,9 +270,10 @@ public class Car_Spinner_Faults extends Fragment {
             @Override
             public void run() {
                 //speak to user
-                toSpeech.speak(gasFixingTwo, TextToSpeech.QUEUE_FLUSH, null);
+                toSpeech.speak(gasFixingOne, TextToSpeech.QUEUE_FLUSH, null);
                 //show dialog
                 niftyDialogBuilder
+                        .withIcon(getResources().getDrawable(R.mipmap.logologo))
                         .withTitle(state)
                         .withTitleColor("#9dffffff")
                         .withMessage(gasFixingOne)
@@ -263,12 +294,13 @@ public class Car_Spinner_Faults extends Fragment {
                                  * Show second NiftyDialog
                                  * */
                                 niftyDialogBuilder
+                                        .withIcon(getResources().getDrawable(R.mipmap.logologo))
                                         .withTitle(state)
                                         .withTitleColor("#9dffffff")
                                         .withMessage(gasFixingTwo)
                                         .withMessageColor("#9dffffff")
                                         .withDialogColor("#2A3342")
-                                        .withButton1Text("OK")
+                                        .withButton1Text("NEXT STEPS")
                                         .withDuration(700)
                                         .isCancelable(false)
                                         .withEffect(Effectstype.Fall)
@@ -277,7 +309,31 @@ public class Car_Spinner_Faults extends Fragment {
                                             public void onClick(View v) {
                                                 toSpeech.stop();
                                                 niftyDialogBuilder.cancel();
-                                                jumpHelpful();
+                                                //speak to user
+                                                toSpeech.speak(gasFixingThree, TextToSpeech.QUEUE_FLUSH, null);
+                                                /**
+                                                 * Show second NiftyDialog
+                                                 * */
+                                                niftyDialogBuilder
+                                                        .withIcon(getResources().getDrawable(R.mipmap.logologo))
+                                                        .withTitle(state)
+                                                        .withTitleColor("#9dffffff")
+                                                        .withMessage(gasFixingThree)
+                                                        .withMessageColor("#9dffffff")
+                                                        .withDialogColor("#2A3342")
+                                                        .withButton1Text("OK")
+                                                        .withDuration(700)
+                                                        .isCancelable(false)
+                                                        .withEffect(Effectstype.Fall)
+                                                        .setButton1Click(new View.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(View v) {
+                                                                toSpeech.stop();
+                                                                niftyDialogBuilder.cancel();
+                                                                jumpHelpful();
+                                                            }
+                                                        })
+                                                        .show();
                                             }
                                         })
                                         .show();
@@ -290,17 +346,19 @@ public class Car_Spinner_Faults extends Fragment {
 
     //antenna fixing
     private void antennaFault() {
-        final String state = "How to Fix a Broken Antenna.";
-        final String brokenAtennaOne = resources.getString(R.string.antennaOne);
-        final String brokenAtennaTwo = resources.getString(R.string.antennaTwo);
+        final String state = "Broken Antenna.";
+        final String stateSpeech = "How to Fix a Broken Antenna.";
+        final String brokenAntennaOne = resources.getString(R.string.antennaOne);
+        final String brokenAntennaTwo = resources.getString(R.string.antennaTwo);
+        final String brokenAntennaThree = resources.getString(R.string.antennaThree);
         //speak
-        toSpeech.speak(state, TextToSpeech.QUEUE_FLUSH, null);
+        toSpeech.speak(stateSpeech, TextToSpeech.QUEUE_FLUSH, null);
 
         //get image to show in toast
         imageView.setImageResource(R.mipmap.antenna);
 
         //show image in toast
-        Toast toast = Toast.makeText(getActivity(), state, Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(getActivity(), stateSpeech, Toast.LENGTH_LONG);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.setView(imageView);
         toast.show();
@@ -309,12 +367,13 @@ public class Car_Spinner_Faults extends Fragment {
             @Override
             public void run() {
                 //speak to user
-                toSpeech.speak(brokenAtennaOne, TextToSpeech.QUEUE_FLUSH, null);
+                toSpeech.speak(brokenAntennaOne, TextToSpeech.QUEUE_FLUSH, null);
                 //show dialog
                 niftyDialogBuilder
+                        .withIcon(getResources().getDrawable(R.mipmap.logologo))
                         .withTitle(state)
                         .withTitleColor("#9dffffff")
-                        .withMessage(brokenAtennaOne)
+                        .withMessage(brokenAntennaOne)
                         .withMessageColor("#9dffffff")
                         .withDialogColor("#2A3342")
                         .withButton1Text("NEXT STEPS")
@@ -327,17 +386,18 @@ public class Car_Spinner_Faults extends Fragment {
                                 toSpeech.stop();
                                 niftyDialogBuilder.cancel();
                                 //speak to user
-                                toSpeech.speak(brokenAtennaTwo, TextToSpeech.QUEUE_FLUSH, null);
+                                toSpeech.speak(brokenAntennaTwo, TextToSpeech.QUEUE_FLUSH, null);
                                 /**
                                  * Show second NiftyDialog
                                  * */
                                 niftyDialogBuilder
+                                        .withIcon(getResources().getDrawable(R.mipmap.logologo))
                                         .withTitle(state)
                                         .withTitleColor("#9dffffff")
-                                        .withMessage(brokenAtennaTwo)
+                                        .withMessage(brokenAntennaTwo)
                                         .withMessageColor("#9dffffff")
                                         .withDialogColor("#2A3342")
-                                        .withButton1Text("OK")
+                                        .withButton1Text("NEXT STEPS")
                                         .withDuration(700)
                                         .isCancelable(false)
                                         .withEffect(Effectstype.Fall)
@@ -346,7 +406,31 @@ public class Car_Spinner_Faults extends Fragment {
                                             public void onClick(View v) {
                                                 toSpeech.stop();
                                                 niftyDialogBuilder.cancel();
-                                                jumpHelpful();
+                                                //speak to user
+                                                toSpeech.speak(brokenAntennaThree, TextToSpeech.QUEUE_FLUSH, null);
+                                                /**
+                                                 * Show second NiftyDialog
+                                                 * */
+                                                niftyDialogBuilder
+                                                        .withIcon(getResources().getDrawable(R.mipmap.logologo))
+                                                        .withTitle(state)
+                                                        .withTitleColor("#9dffffff")
+                                                        .withMessage(brokenAntennaThree)
+                                                        .withMessageColor("#9dffffff")
+                                                        .withDialogColor("#2A3342")
+                                                        .withButton1Text("OK")
+                                                        .withDuration(700)
+                                                        .isCancelable(false)
+                                                        .withEffect(Effectstype.Fall)
+                                                        .setButton1Click(new View.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(View v) {
+                                                                toSpeech.stop();
+                                                                niftyDialogBuilder.cancel();
+                                                                jumpHelpful();
+                                                            }
+                                                        })
+                                                        .show();
                                             }
                                         })
                                         .show();
@@ -359,17 +443,19 @@ public class Car_Spinner_Faults extends Fragment {
 
     //cabin fault
     private void cabinFault() {
-        final String state = "How to Fix a Cabin Air Filter.";
+        final String state = "Cabin Air Filter.";
+        final String stateSpeech = "How to Fix a Cabin Air Filter.";
         final String cabinFaultOne = resources.getString(R.string.cabinFaultOne);
         final String cabinFaultTwo = resources.getString(R.string.cabinFaultTwo);
+        final String cabinFaultThree = resources.getString(R.string.cabinFaultThree);
         //speak
-        toSpeech.speak(state, TextToSpeech.QUEUE_FLUSH, null);
+        toSpeech.speak(stateSpeech, TextToSpeech.QUEUE_FLUSH, null);
 
         //get image to show in toast
         imageView.setImageResource(R.mipmap.cabin);
 
         //show image in toast
-        Toast toast = Toast.makeText(getActivity(), state, Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(getActivity(), stateSpeech, Toast.LENGTH_LONG);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.setView(imageView);
         toast.show();
@@ -381,6 +467,7 @@ public class Car_Spinner_Faults extends Fragment {
                 toSpeech.speak(cabinFaultOne, TextToSpeech.QUEUE_FLUSH, null);
                 //show dialog
                 niftyDialogBuilder
+                        .withIcon(getResources().getDrawable(R.mipmap.logologo))
                         .withTitle(state)
                         .withTitleColor("#9dffffff")
                         .withMessage(cabinFaultOne)
@@ -401,12 +488,13 @@ public class Car_Spinner_Faults extends Fragment {
                                  * Show second NiftyDialog
                                  * */
                                 niftyDialogBuilder
+                                        .withIcon(getResources().getDrawable(R.mipmap.logologo))
                                         .withTitle(state)
                                         .withTitleColor("#9dffffff")
                                         .withMessage(cabinFaultTwo)
                                         .withMessageColor("#9dffffff")
                                         .withDialogColor("#2A3342")
-                                        .withButton1Text("OK")
+                                        .withButton1Text("NEXT STEPS")
                                         .withDuration(700)
                                         .isCancelable(false)
                                         .withEffect(Effectstype.Fall)
@@ -415,7 +503,31 @@ public class Car_Spinner_Faults extends Fragment {
                                             public void onClick(View v) {
                                                 toSpeech.stop();
                                                 niftyDialogBuilder.cancel();
-                                                jumpHelpful();
+                                                //speak to user
+                                                toSpeech.speak(cabinFaultThree, TextToSpeech.QUEUE_FLUSH, null);
+                                                /**
+                                                 * Show second NiftyDialog
+                                                 * */
+                                                niftyDialogBuilder
+                                                        .withIcon(getResources().getDrawable(R.mipmap.logologo))
+                                                        .withTitle(state)
+                                                        .withTitleColor("#9dffffff")
+                                                        .withMessage(cabinFaultThree)
+                                                        .withMessageColor("#9dffffff")
+                                                        .withDialogColor("#2A3342")
+                                                        .withButton1Text("OK")
+                                                        .withDuration(700)
+                                                        .isCancelable(false)
+                                                        .withEffect(Effectstype.Fall)
+                                                        .setButton1Click(new View.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(View v) {
+                                                                toSpeech.stop();
+                                                                niftyDialogBuilder.cancel();
+                                                                jumpHelpful();
+                                                            }
+                                                        })
+                                                        .show();
                                             }
                                         })
                                         .show();
@@ -428,17 +540,19 @@ public class Car_Spinner_Faults extends Fragment {
 
     //headlights
     private void nonHeadLights() {
-        final String state = "How to Replace Non-Headlight Bulbs.";
+        final String state = "Non-Headlight Bulbs.";
+        final String stateSpeech = "How to Replace Non-Headlight Bulbs.";
         final String nonheadOne = resources.getString(R.string.nonheadOne);
         final String nonheadTwo = resources.getString(R.string.nonheadTwo);
+        final String nonheadThree = resources.getString(R.string.nonheadThree);
         //speak
-        toSpeech.speak(state, TextToSpeech.QUEUE_FLUSH, null);
+        toSpeech.speak(stateSpeech, TextToSpeech.QUEUE_FLUSH, null);
 
         //get image to show in toast
         imageView.setImageResource(R.mipmap.nonheadlights);
 
         //show image in toast
-        Toast toast = Toast.makeText(getActivity(), state, Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(getActivity(), stateSpeech, Toast.LENGTH_LONG);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.setView(imageView);
         toast.show();
@@ -450,6 +564,7 @@ public class Car_Spinner_Faults extends Fragment {
                 toSpeech.speak(nonheadOne, TextToSpeech.QUEUE_FLUSH, null);
                 //show dialog
                 niftyDialogBuilder
+                        .withIcon(getResources().getDrawable(R.mipmap.logologo))
                         .withTitle(state)
                         .withTitleColor("#9dffffff")
                         .withMessage(nonheadOne)
@@ -470,12 +585,13 @@ public class Car_Spinner_Faults extends Fragment {
                                  * Show second NiftyDialog
                                  * */
                                 niftyDialogBuilder
+                                        .withIcon(getResources().getDrawable(R.mipmap.logologo))
                                         .withTitle(state)
                                         .withTitleColor("#9dffffff")
                                         .withMessage(nonheadTwo)
                                         .withMessageColor("#9dffffff")
                                         .withDialogColor("#2A3342")
-                                        .withButton1Text("OK")
+                                        .withButton1Text("NEXT STEPS")
                                         .withDuration(700)
                                         .isCancelable(false)
                                         .withEffect(Effectstype.Fall)
@@ -484,7 +600,31 @@ public class Car_Spinner_Faults extends Fragment {
                                             public void onClick(View v) {
                                                 toSpeech.stop();
                                                 niftyDialogBuilder.cancel();
-                                                jumpHelpful();
+                                                //speak to user
+                                                toSpeech.speak(nonheadThree, TextToSpeech.QUEUE_FLUSH, null);
+                                                /**
+                                                 * Show second NiftyDialog
+                                                 * */
+                                                niftyDialogBuilder
+                                                        .withIcon(getResources().getDrawable(R.mipmap.logologo))
+                                                        .withTitle(state)
+                                                        .withTitleColor("#9dffffff")
+                                                        .withMessage(nonheadThree)
+                                                        .withMessageColor("#9dffffff")
+                                                        .withDialogColor("#2A3342")
+                                                        .withButton1Text("OK")
+                                                        .withDuration(700)
+                                                        .isCancelable(false)
+                                                        .withEffect(Effectstype.Fall)
+                                                        .setButton1Click(new View.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(View v) {
+                                                                toSpeech.stop();
+                                                                niftyDialogBuilder.cancel();
+                                                                jumpHelpful();
+                                                            }
+                                                        })
+                                                        .show();
                                             }
                                         })
                                         .show();
@@ -497,17 +637,20 @@ public class Car_Spinner_Faults extends Fragment {
 
     //sunroof fault
     private void sunRoof() {
-        final String state = "How to Fix a Leaky Sunroof.";
+        final String state = "Leaky Sunroof.";
+        final String stateSpeech = "How to Fix a Leaky Sunroof.";
         final String sunFaultOne = resources.getString(R.string.roofOne);
         final String sunFaultTwo = resources.getString(R.string.roofTwo);
+        final String sunFaultThree = resources.getString(R.string.roofThree);
+        final String sunFaultFour = resources.getString(R.string.roofFour);
         //speak
-        toSpeech.speak(state, TextToSpeech.QUEUE_FLUSH, null);
+        toSpeech.speak(stateSpeech, TextToSpeech.QUEUE_FLUSH, null);
 
         //get image to show in toast
         imageView.setImageResource(R.mipmap.sunroof);
 
         //show image in toast
-        Toast toast = Toast.makeText(getActivity(), state, Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(getActivity(), stateSpeech, Toast.LENGTH_LONG);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.setView(imageView);
         toast.show();
@@ -519,6 +662,7 @@ public class Car_Spinner_Faults extends Fragment {
                 toSpeech.speak(sunFaultOne, TextToSpeech.QUEUE_FLUSH, null);
                 //show dialog
                 niftyDialogBuilder
+                        .withIcon(getResources().getDrawable(R.mipmap.logologo))
                         .withTitle(state)
                         .withTitleColor("#9dffffff")
                         .withMessage(sunFaultOne)
@@ -539,12 +683,13 @@ public class Car_Spinner_Faults extends Fragment {
                                  * Show second NiftyDialog
                                  * */
                                 niftyDialogBuilder
+                                        .withIcon(getResources().getDrawable(R.mipmap.logologo))
                                         .withTitle(state)
                                         .withTitleColor("#9dffffff")
                                         .withMessage(sunFaultTwo)
                                         .withMessageColor("#9dffffff")
                                         .withDialogColor("#2A3342")
-                                        .withButton1Text("OK")
+                                        .withButton1Text("NEXT STEPS")
                                         .withDuration(700)
                                         .isCancelable(false)
                                         .withEffect(Effectstype.Fall)
@@ -553,7 +698,55 @@ public class Car_Spinner_Faults extends Fragment {
                                             public void onClick(View v) {
                                                 toSpeech.stop();
                                                 niftyDialogBuilder.cancel();
-                                                jumpHelpful();
+                                                //speak to user
+                                                toSpeech.speak(sunFaultThree, TextToSpeech.QUEUE_FLUSH, null);
+                                                /**
+                                                 * Show second NiftyDialog
+                                                 * */
+                                                niftyDialogBuilder
+                                                        .withIcon(getResources().getDrawable(R.mipmap.logologo))
+                                                        .withTitle(state)
+                                                        .withTitleColor("#9dffffff")
+                                                        .withMessage(sunFaultThree)
+                                                        .withMessageColor("#9dffffff")
+                                                        .withDialogColor("#2A3342")
+                                                        .withButton1Text("NEXT STEPS")
+                                                        .withDuration(700)
+                                                        .isCancelable(false)
+                                                        .withEffect(Effectstype.Fall)
+                                                        .setButton1Click(new View.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(View v) {
+                                                                toSpeech.stop();
+                                                                niftyDialogBuilder.cancel();
+                                                                //speak to user
+                                                                toSpeech.speak(sunFaultFour, TextToSpeech.QUEUE_FLUSH, null);
+                                                                /**
+                                                                 * Show second NiftyDialog
+                                                                 * */
+                                                                niftyDialogBuilder
+                                                                        .withIcon(getResources().getDrawable(R.mipmap.logologo))
+                                                                        .withTitle(state)
+                                                                        .withTitleColor("#9dffffff")
+                                                                        .withMessage(sunFaultFour)
+                                                                        .withMessageColor("#9dffffff")
+                                                                        .withDialogColor("#2A3342")
+                                                                        .withButton1Text("OK")
+                                                                        .withDuration(700)
+                                                                        .isCancelable(false)
+                                                                        .withEffect(Effectstype.Fall)
+                                                                        .setButton1Click(new View.OnClickListener() {
+                                                                            @Override
+                                                                            public void onClick(View v) {
+                                                                                toSpeech.stop();
+                                                                                niftyDialogBuilder.cancel();
+                                                                                jumpHelpful();
+                                                                            }
+                                                                        })
+                                                                        .show();
+                                                            }
+                                                        })
+                                                        .show();
                                             }
                                         })
                                         .show();
@@ -575,7 +768,7 @@ public class Car_Spinner_Faults extends Fragment {
          * */
         niftyDialogBuilder
                 .withIcon(getResources().getDrawable(R.mipmap.logologo))
-                .withTitle("Car Fault Inference")
+                .withTitle("Car Fault")
                 .withTitleColor("#9dffffff")
                 .withMessage(chooseFault)
                 .withMessageColor("#9dffffff")
