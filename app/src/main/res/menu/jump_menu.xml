@@ -8,11 +8,11 @@
     <item
         android:id="@+id/Garage"
         android:orderInCategory="100"
-        android:title="Find Garage..."
+        android:title="@string/find_garage"
         app:showAsAction="never" />
     <item
         android:id="@+id/logout"
         android:orderInCategory="100"
-        android:title="Logout"
+        android:title="@string/exit"
         app:showAsAction="never" />
 </menu>

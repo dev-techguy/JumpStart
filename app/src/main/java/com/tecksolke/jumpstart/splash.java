@@ -51,7 +51,7 @@ public class splash extends AppCompatActivity {
         splash.startAnimation(animation);
 
         //start a new activity after splash screen
-        final Intent intent = new Intent(this, Login.class);
+        final Intent intent = new Intent(this, Category.class);
 
         //start a thread to give a counter
         Thread timer = new Thread() {
@@ -68,9 +68,9 @@ public class splash extends AppCompatActivity {
             }
         };
         //start the timer
-        checkConnection(this);
+//        checkConnection(this);
         timer.start();
-        deleteData();
+//        deleteData();
     }
 
     //delete data from SQlite

@@ -52,8 +52,8 @@ public class Car_JumpStart extends AppCompatActivity {
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_car);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_tool);
         /*
-        * end of that spinner code
-        * */
+         * end of that spinner code
+         * */
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -75,7 +75,8 @@ public class Car_JumpStart extends AppCompatActivity {
             public void onInit(int status) {
                 if (status == TextToSpeech.SUCCESS) {
                     result = toSpeech.setLanguage(Locale.UK);
-                    toSpeech.speak("Hello " + getUsername() + ",  Am JumpStart , How May I Help You Fix Your Car", TextToSpeech.QUEUE_FLUSH, null);
+//                    toSpeech.speak("Hello " + getUsername() + ",  Am JumpStart , How May I Help You Fix Your Car", TextToSpeech.QUEUE_FLUSH, null);
+                    toSpeech.speak(env.voice + " Car", TextToSpeech.QUEUE_FLUSH, null);
                 } else {
                     niftyDialogBuilder
                             .withIcon(getResources().getDrawable(R.mipmap.logologo))
@@ -101,6 +102,7 @@ public class Car_JumpStart extends AppCompatActivity {
         });
 
     }
+
     //function for reading data
     public void readData() {
         Cursor res = temporaryDB.getAllData();
@@ -148,9 +150,12 @@ public class Car_JumpStart extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.logout) {
-            deleteData();
-            startActivity(new Intent(this, Login.class));
-            finish();
+            moveTaskToBack(true);
+            android.os.Process.killProcess(android.os.Process.myPid());
+            System.exit(1);
+//            deleteData();
+//            startActivity(new Intent(this, Login.class));
+//            finish();
         }
         if (id == R.id.Garage) {
             startActivity(new Intent(this, Car_Garage_Maps.class));

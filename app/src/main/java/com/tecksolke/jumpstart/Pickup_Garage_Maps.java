@@ -120,14 +120,14 @@ public class Pickup_Garage_Maps extends AppCompatActivity implements OnMapReadyC
             // for ActivityCompat#requestPermissions for more details.
         } else {
             //speech method
-            final String garage = "Allow JumpStart to use your Location, To find you nearest garage";
+            final String garage = "Allow JumpStart to use your Location. To find you nearest garage";
             toSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
                 @Override
                 public void onInit(int status) {
                     if (status == TextToSpeech.SUCCESS) {
                         result = toSpeech.setLanguage(Locale.UK);
 
-                        toSpeech.speak("Hello " + getUsername() + "." + garage, TextToSpeech.QUEUE_FLUSH, null);
+                        toSpeech.speak(garage, TextToSpeech.QUEUE_FLUSH, null);
                     } else {
                         niftyDialogBuilder
                                 .withIcon(getResources().getDrawable(R.mipmap.logologo))
@@ -228,9 +228,12 @@ public class Pickup_Garage_Maps extends AppCompatActivity implements OnMapReadyC
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.logout) {
-            deleteData();
-            startActivity(new Intent(this, Login.class));
-            finish();
+            moveTaskToBack(true);
+            android.os.Process.killProcess(android.os.Process.myPid());
+            System.exit(1);
+//            deleteData();
+//            startActivity(new Intent(this, Login.class));
+//            finish();
         }
 
         return super.onOptionsItemSelected(item);

@@ -184,6 +184,9 @@
     <string name="overHeating_Three">
         "6. Check the oil and coolant levels when the engine is cool.\n7. Check for leaks. All this leads to engine overheating."
     </string>
+    <string name="find_garage">Find Garage...</string>
+    <string name="exit">Exit</string>
+    <string name="powered_by_tecksolke">Powered By TecksolKE</string>
     <!--
     End of Lorry Faults
     -->
